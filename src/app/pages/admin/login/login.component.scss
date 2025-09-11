@@ -1,0 +1,12 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+    .container {
+        gap: 0.6rem;
+
+        img {
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+}

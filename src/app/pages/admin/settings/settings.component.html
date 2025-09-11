@@ -1,0 +1,43 @@
+<nb-card>
+  <nb-card-header>
+    settings
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form">
+      <div class="form-group row">
+        <label class="label col-sm-3 col-form-label">title</label>
+        <div class="col-sm-9">
+          <input type="text" nbInput fullWidth formControlName="name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="label col-sm-3 col-form-label">file</label>
+        <div class="col-sm-9">
+          <input *ngIf="!form.controls['file'].value" nbInput fullWidth readonly (click)="selectFile()"
+            placeholder="Click to select file" />
+          <input *ngIf="form.controls['file'].value" nbInput [value]="fileName('file')" fullWidth readonly />
+          <input id="file" style="display: none" formControlName="file" type="file" nbInput fullWidth
+            (change)="uploadFile($event, 'file')">
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex gap-2">
+        <button nbButton class="mx-1 col-sm-6" status="primary" (click)="add()">
+          Add new title
+          <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+        <button nbButton class="mx-1 col-sm-6" status="info" (click)="replace()">
+          Replace saved data
+          <nb-icon icon="edit-2-outline"></nb-icon>
+        </button>
+      </div>
+      <button nbButton class="mx-1 col-sm-3" status="danger" (click)="delete()">
+        Delete saved data
+        <nb-icon icon="trash-2-outline"></nb-icon>
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,25 @@
+<form [formGroup]="filterForm">
+    <nb-card>
+        <nb-card-body>
+            <div class="row">
+                <input class="col-sm-4" nbInput fullWidth placeholder="search" formControlName="search">
+                <nb-select *ngFor="let filter of filters" class="col-sm-2" fullWidth
+                    placeholder="{{filter.placeholder}}" formControlName="{{filter.name}}">
+                    <nb-option *ngFor="let option of filter.options"
+                        value="{{option.name}}">{{option.placeholder}}</nb-option>
+                </nb-select>
+                <div class="col-sm-3 row" *ngIf="hasPagination">
+                    <button class="col-sm-3" nbButton fullWidth (click)="nextPage()">
+                        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                    </button>
+                    <p class="col-sm-4 m-auto">
+                        صفحه {{paginationForm.controls.page.value}}
+                    </p>
+                    <button class="col-sm-3" nbButton fullWidth (click)="previousPage()">
+                        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</form>

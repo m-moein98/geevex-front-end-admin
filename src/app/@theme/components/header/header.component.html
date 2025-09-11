@@ -1,0 +1,22 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+  </div>
+  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  </nb-select>
+</div>
+
+<div class="header-container" *ngIf="user">
+  <nb-actions size="small">
+    <nb-action class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action>
+    <nb-action class="user-action" [nbContextMenu]="userMenu">
+      <nb-user [name]="user?.first_name + ' ' + user?.last_name" [picture]="user?.picture" (click)="open()">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>
