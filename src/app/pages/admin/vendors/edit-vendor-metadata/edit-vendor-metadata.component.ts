@@ -21,7 +21,6 @@ export class EditVendorMetadataDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.rowData)
     this.rowData.coin_map.forEach((coin) => {
       this.forms[coin.symbol] = this.fb.group({
         price_multiplier: [coin.price_multiplier],
@@ -31,7 +30,6 @@ export class EditVendorMetadataDialogComponent implements OnInit {
     });
   }
   updateCoinmap(symbol: string) {
-    console.log(this.rowData)
     const updated = this.forms[symbol].value;
     this.rowData.coin_map.find(coin => coin.symbol === symbol).metadata.omp_buy_market_id = updated.omp_buy_market_id;
     this.rowData.coin_map.find(coin => coin.symbol === symbol).metadata.omp_sell_market_id = updated.omp_sell_market_id;
