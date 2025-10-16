@@ -41,3 +41,7 @@ export interface Vendor {
 export interface VendorsResponse extends Pagination {
   results: Vendor[];
 }
+
+export interface BasicResponse {
+  detail: string;
+}

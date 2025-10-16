@@ -117,8 +117,7 @@ export class VendorsComponent implements OnInit {
           instance.buttonClick.subscribe((rowData: Vendor) => {
             console.log(rowData)
             this.dialogService.open(EditVendorMetadataDialogComponent, {
-              context:
-                { rowData }
+              context: { rowData }
             }).onClose.subscribe((res) => {
               console.log(res)
             })

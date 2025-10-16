@@ -8,7 +8,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { Observable } from "rxjs";
-import { Vendor, VendorsResponse } from "./admin.model";
+import { BasicResponse, Vendor, VendorsResponse } from "./admin.model";
 
 import { catchError, tap } from "rxjs/operators";
 import { apiEndpoints } from "../constants/apiendpoints";
@@ -101,7 +101,7 @@ export class AdminService {
   getVendors(): Observable<VendorsResponse> {
     return this.http.get<VendorsResponse>(apiEndpoints.vendors)
   }
-  updateVendor(data: Vendor): Observable<any> {
-    return this.http.patch<any>(apiEndpoints.vendors, data)
+  updateVendor(data: Vendor): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(apiEndpoints.vendors + data.id, data)
   }
 }
