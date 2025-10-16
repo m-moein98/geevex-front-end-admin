@@ -1,132 +1,70 @@
-import { Component, OnInit } from "@angular/core";
-import { LocalDataSource } from 'ng2-smart-table';
+import { Component } from "@angular/core";
 import { concatMap, tap } from 'rxjs/operators';
 import { AdminService } from "../admin-service";
-import { ToastService } from "../../toast-service";
-import { Router } from "@angular/router";
-import { Pagination, Vendor, VendorsResponse } from "../admin.model";
-import { CustomButtonComponent } from "../custom-button.component";
+import { Vendor, VendorsResponse } from "../admin.model";
 import { NbDialogService } from "@nebular/theme";
 import { EditVendorMetadataDialogComponent } from "./edit-vendor-metadata/edit-vendor-metadata.component";
+import { BaseTableComponent } from "../base-table/base-table.component";
 
 @Component({
   selector: "ngx-vendors",
   styleUrls: ["./vendors.component.scss"],
   templateUrl: "./vendors.component.html",
 })
-export class VendorsComponent implements OnInit {
+export class VendorsComponent extends BaseTableComponent {
   constructor(
     private service: AdminService,
-    private dialogService: NbDialogService,
-    private toastService: ToastService,
-    private router: Router,
+    private dialogService: NbDialogService
   ) {
-    const updateObserver = {
-      next: () => this.ngOnInit(),
-      error: () => this.ngOnInit()
-    }
+    super()
     this.source.onUpdated().pipe(
       tap(() => this.isLoading = true),
       concatMap((payload: Vendor) => this.service.updateVendor(payload)),
-    ).subscribe(updateObserver)
+    ).subscribe(this.updateObserver)
     this.source.onAdded().pipe(
       tap(() => this.isLoading = true),
       concatMap((payload: Vendor) => this.service.addVendor(payload)),
-    ).subscribe(updateObserver);
+    ).subscribe(this.updateObserver);
   }
   vendors: Vendor[]
-  pagination: Pagination
-  isLoading = true
-  source: LocalDataSource = new LocalDataSource();
 
   settingsFactory = () => ({
-    actions: {
-      add: true,
-      edit: true,
-      delete: false,
-    },
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
+    ...this.defaultSettings,
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-        editable: false,
-        addable: false,
-        width: '5%',
-      },
+      ...this.defaultColumns,
       name: {
         title: 'Name',
-        type: 'number',
-        editable: false,
-        addable: false,
         width: '15%',
       },
       is_active: {
         title: 'Active',
-        type: 'string',
-        editor: {
-          type: 'list',
-          config: {
-            selectText: 'Select',
-            list: [
-              { value: true },
-              { value: false }
-            ]
-          }
-        }
+        ...this.boolColumnParams,
       },
       token: {
         title: 'Token',
-        type: 'string',
-        editable: false,
-        addable: false,
         width: '15%',
       },
       username: {
         title: 'Username',
-        type: 'string',
-        editable: false,
-        addable: false,
         width: '15%',
       },
       password: {
         title: 'Password',
-        type: 'string',
-        editable: false,
-        addable: false,
         width: '15%',
       },
       coin_map: {
         title: 'Coin Map',
-        type: 'custom',
-        editable: false,
-        addable: false,
-        filter: false,
-        width: '5%',
-        renderComponent: CustomButtonComponent,
+        ...this.customColumnParams,
         onComponentInitFunction: (instance) => {
           instance.buttonClick.subscribe((rowData: Vendor) => {
-            console.log(rowData)
             this.dialogService.open(EditVendorMetadataDialogComponent, {
               context: { rowData }
-            }).onClose.subscribe((res) => {
-              console.log(res)
             })
           })
         },
       },
     },
   });
-  settings = this.settingsFactory()
 
   ngOnInit() {
     this.getVendors()
@@ -137,14 +75,11 @@ export class VendorsComponent implements OnInit {
       (res: VendorsResponse) => {
         this.vendors = res.results
         this.pagination = {
-          count: res.count,
-          next: res.next,
-          previous: res.previous,
+          count: res.count, next: res.next, previous: res.previous
         }
         this.isLoading = false
         this.source.load(this.vendors)
         this.settings = this.settingsFactory()
-        console.log(this.vendors, this.pagination)
       }
     );
   }
