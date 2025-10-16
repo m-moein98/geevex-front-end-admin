@@ -62,7 +62,7 @@ export class BaseTableComponent implements OnInit {
             }
         }
     }
-
+    
     customColumnParams = {
         type: 'custom',
         editable: false,

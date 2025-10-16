@@ -34,6 +34,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { SettingsComponent } from "./settings/settings.component";
 import { VendorsComponent } from "./vendors/vendors.component";
 import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadata/edit-vendor-metadata.component";
+import { CoinsComponent } from "./coins/coins.component";
 
 @NgModule({
   imports: [
@@ -69,6 +70,7 @@ import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadat
     CustomButtonComponent,
     VendorsComponent,
     EditVendorMetadataDialogComponent,
+    CoinsComponent,
   ],
 })
 export class AdminModule { }
