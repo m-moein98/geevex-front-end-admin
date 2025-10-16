@@ -31,3 +31,11 @@
 
   @include nb-overrides();
 };
+
+.screen-75 {
+  min-width: 75dvw;
+  max-width: 75dvw;
+  width: 75dvw;
+  margin: 0 auto;
+  height: 100%;
+}

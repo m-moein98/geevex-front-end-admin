@@ -1,0 +1,42 @@
+<div class="screen-75">
+    <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+        <nb-card-header>
+
+        </nb-card-header>
+        <nb-card-body>
+            <nb-accordion>
+                <nb-accordion-item *ngFor="let coin of rowData.coin_map">
+                    <nb-accordion-item-header>
+                        {{ coin.symbol }}
+                    </nb-accordion-item-header>
+
+                    <nb-accordion-item-body>
+                        <form [formGroup]="forms[coin.symbol]">
+                            <div class="form-group">
+                                <label>Price Multiplier</label>
+                                <input nbInput fullWidth type="number" formControlName="price_multiplier" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Buy Market ID</label>
+                                <input nbInput fullWidth type="text" formControlName="omp_buy_market_id" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sell Market ID</label>
+                                <input nbInput fullWidth type="text" formControlName="omp_sell_market_id" />
+                            </div>
+
+                            <div class="mt-2">
+                                <button nbButton status="primary" size="small"
+                                    (click)="updateCoinmap(coin.symbol)">Update</button>
+                                <button nbButton status="danger" size="small"
+                                    (click)="deleteCoinmap(coin.symbol)">Delete</button>
+                            </div>
+                        </form>
+                    </nb-accordion-item-body>
+                </nb-accordion-item>
+            </nb-accordion>
+        </nb-card-body>
+    </nb-card>
+</div>

@@ -32,6 +32,8 @@ import { Ng2SmartTableModule } from "ng2-smart-table";
 import { CustomButtonComponent } from "./custom-button.component";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { SettingsComponent } from "./settings/settings.component";
+import { VendorsComponent } from "./vendors/vendors.component";
+import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadata/edit-vendor-metadata.component";
 
 @NgModule({
   imports: [
@@ -65,6 +67,8 @@ import { SettingsComponent } from "./settings/settings.component";
     FiltersComponent,
     LoginComponent,
     CustomButtonComponent,
+    VendorsComponent,
+    EditVendorMetadataDialogComponent,
   ],
 })
 export class AdminModule { }

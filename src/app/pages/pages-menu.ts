@@ -22,9 +22,14 @@ function setMenuItems() {
   if (user) {
     MENU_ITEMS.push(
       {
+        title: 'vendor',
+        link: '/pages/admin/vendors',
+        icon: 'car-outline',
+      },
+      {
         title: 'deposit',
         link: '/pages/admin/deposit',
-        icon: 'download-outline', // money coming in
+        icon: 'download-outline',
       },
       {
         title: 'withdrawal',

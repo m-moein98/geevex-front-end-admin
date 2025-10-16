@@ -8,7 +8,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { Observable } from "rxjs";
-import { DashboardData } from "./admin.model";
+import { Vendor, VendorsResponse } from "./admin.model";
 
 import { catchError, tap } from "rxjs/operators";
 import { apiEndpoints } from "../constants/apiendpoints";
@@ -94,5 +94,14 @@ export class AdminService {
   }
   uploadFile(data: FormData): Observable<any> {
     return this.http.post<any>(apiEndpoints.upload, data);
+  }
+  addVendor(data: Vendor): Observable<any> {
+    return this.http.post<any>(apiEndpoints.vendors, data)
+  }
+  getVendors(): Observable<VendorsResponse> {
+    return this.http.get<VendorsResponse>(apiEndpoints.vendors)
+  }
+  updateVendor(data: Vendor): Observable<any> {
+    return this.http.patch<any>(apiEndpoints.vendors, data)
   }
 }

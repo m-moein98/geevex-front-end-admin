@@ -1,16 +1,3 @@
-export interface DashboardData {
-  total_construction_area?: string;
-  total_approved_area?: string;
-  total_contracts?: string;
-  total_contracts_price?: string;
-  total_checklists?: string;
-  total_reports?: string;
-  total_wrong_checklist_answers?: string;
-  total_sent_actions?: string;
-  total_sent_back_actions?: string;
-  total_completed_actions?: string;
-  total_not_sent_actions?: string;
-}
 
 export interface Option {
   name: string | boolean;
@@ -22,4 +9,35 @@ export interface Filter {
   placeholder: string;
   defaultValue: string | boolean;
   options: Option[];
+}
+
+export interface Pagination {
+  count: number;
+  next: string;
+  previous: string;
+}
+
+export interface VendorCoinmapMetadata {
+  omp_buy_market_id: number;
+  omp_sell_market_id: number;
+}
+
+export interface VendorCoinmap {
+  symbol: string;
+  price_multiplier: number;
+  metadata: VendorCoinmapMetadata;
+}
+
+export interface Vendor {
+  id: number;
+  name: string;
+  is_active: boolean;
+  token: string;
+  username: string;
+  password: string;
+  coin_map: VendorCoinmap[];
+}
+
+export interface VendorsResponse extends Pagination {
+  results: Vendor[];
 }
