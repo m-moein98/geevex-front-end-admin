@@ -22,9 +22,19 @@ function setMenuItems() {
   if (user) {
     MENU_ITEMS.push(
       {
-        title: 'vendor',
+        title: 'vendors',
         link: '/pages/admin/vendors',
         icon: 'car-outline',
+      },
+      {
+        title: 'coins',
+        link: '/pages/admin/coins',
+        icon: 'radio-button-on-outline',
+      },
+      {
+        title: 'accounting',
+        link: '/pages/admin/accounting',
+        icon: 'book-outline',
       },
       {
         title: 'deposit',
@@ -34,12 +44,7 @@ function setMenuItems() {
       {
         title: 'withdrawal',
         link: '/pages/admin/withdrawal',
-        icon: 'upload-outline', 
-      },
-      {
-        title: 'coins',
-        link: '/pages/admin/coins',
-        icon: 'radio-button-on-outline',
+        icon: 'upload-outline',
       },
       {
         title: 'exchange platform',
@@ -70,11 +75,6 @@ function setMenuItems() {
         title: 'wallet',
         link: '/pages/admin/wallet',
         icon: 'credit-card-outline',
-      },
-      {
-        title: 'accounting',
-        link: '/pages/admin/accounting',
-        icon: 'book-outline',
       },
       {
         title: 'basket management',
