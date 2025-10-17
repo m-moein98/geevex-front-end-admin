@@ -88,3 +88,30 @@ export interface CreateCoin {
   maximum_buy_amount: number;
   maximum_sell_amount: number;
 }
+
+export interface KYCUser {
+  id: number;
+  email: string;
+}
+
+export interface KYC {
+  id: number;
+  user: KYCUser;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  first_name: string;
+  last_name: string;
+  father_name: string;
+  national_code: string;
+  date_of_birth: string;
+  birth_place: string;
+  bank_account_number: string;
+  front_id_image: string;
+  back_id_image: string;
+  selfie_video: string;
+}
+
+export interface KYCsResponse extends Pagination {
+  results: KYC[];
+}

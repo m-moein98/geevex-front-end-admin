@@ -38,6 +38,9 @@ import { CoinsComponent } from "./coins/coins.component";
 import { SetCoinVendorDialogComponent } from "./coins/set-coin-vendor/set-coin-vendor.component";
 import { SetCoinLogoDialogComponent } from "./coins/set-coin-logo/set-coin-logo.component";
 import { TableRowImageComponent } from "./table-row-image.component";
+import { VideoPreviewComponent } from "./video-preview/video-preview.component";
+import { ImagePreviewComponent } from "./image-preview/image-preview.component";
+import { KYCComponent } from "./kyc/kyc.component";
 
 @NgModule({
   imports: [
@@ -77,6 +80,9 @@ import { TableRowImageComponent } from "./table-row-image.component";
     CoinsComponent,
     SetCoinVendorDialogComponent,
     SetCoinLogoDialogComponent,
+    KYCComponent,
+    VideoPreviewComponent,
+    ImagePreviewComponent,
   ],
 })
 export class AdminModule { }

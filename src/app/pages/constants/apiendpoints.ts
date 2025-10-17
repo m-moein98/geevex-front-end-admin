@@ -6,4 +6,5 @@ export const apiEndpoints = {
     user: `${baseurl}/accounts/user/`,
     vendors: `${baseurl}/vendors/`,
     coins: `${baseurl}/administration/coins/`,
+    kyc: `${baseurl}/administration/kyc/`,
 }

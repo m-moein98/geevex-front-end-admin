@@ -37,6 +37,11 @@ function setMenuItems() {
         icon: 'book-outline',
       },
       {
+        title: 'kyc',
+        link: '/pages/admin/kyc',
+        icon: 'checkmark-square-outline',
+      },
+      {
         title: 'deposit',
         link: '/pages/admin/deposit',
         icon: 'download-outline',
