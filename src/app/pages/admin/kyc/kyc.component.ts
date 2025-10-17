@@ -6,6 +6,7 @@ import { concatMap, tap } from 'rxjs/operators';
 import { NbDialogService } from "@nebular/theme";
 import { ImagePreviewComponent } from "../image-preview/image-preview.component";
 import { VideoPreviewComponent } from "../video-preview/video-preview.component";
+import { ToastService } from "../../toast-service";
 
 @Component({
   selector: "ngx-kyc",
@@ -15,12 +16,16 @@ import { VideoPreviewComponent } from "../video-preview/video-preview.component"
 export class KYCComponent extends BaseTableComponent {
   constructor(
     private service: AdminService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private toastService: ToastService
   ) {
     super()
     this.source.onUpdated().pipe(
-      tap(() => { }),
-      concatMap(payload => this.service.updateKYCStatus(payload.data.id, payload.data.status)),
+      tap(() => this.isLoading = true),
+      concatMap(payload => {
+        this.toastService.showToast('success', 'success', `KYC Status changed to ${payload.status}`)
+        return this.service.updateKYCStatus(payload.id, payload.status)
+      }),
     ).subscribe(this.updateObserver)
   }
   KYCs: KYC[]
