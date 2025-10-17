@@ -5,6 +5,7 @@ import { BaseTableComponent } from "../base-table/base-table.component";
 import { Coin, CoinsResponse, Vendor } from "../admin.model";
 import { SetCoinVendorDialogComponent } from "./set-coin-vendor/set-coin-vendor.component";
 import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.component";
+import { concatMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: "ngx-coins",
@@ -12,18 +13,23 @@ import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.compon
   templateUrl: "./coins.component.html",
 })
 export class CoinsComponent extends BaseTableComponent {
+
   constructor(
     private service: AdminService,
     private dialogService: NbDialogService
   ) {
     super()
+    this.source.onAdded().pipe(
+      tap(() => {}),
+      concatMap(payload => this.service.createCoin(payload)),
+    ).subscribe(this.updateObserver)
   }
   coins: Coin[]
 
   settingsFactory = () => ({
     ...this.defaultSettings,
     actions: {
-      add: false,
+      add: true,
       edit: false,
       delete: false,
     },
@@ -41,15 +47,22 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Symbol',
         width: '15%',
       },
-      daily_starting_price: {
-        title: 'Daily Starting Price',
+      daily_starting_irr_price: {
+        title: 'Daily Starting IRR Price',
         width: '15%',
       },
-      price: {
-        title: 'Price',
+      daily_starting_usdt_price: {
+        title: 'Daily Starting USDT Price',
         width: '15%',
       },
-
+      irr_price: {
+        title: 'IRR Price',
+        width: '15%',
+      },
+      usdt_price: {
+        title: 'USDT Price',
+        width: '15%',
+      },
       is_sellable: {
         title: 'Is Sellable',
         ...this.boolColumnParams,
@@ -86,7 +99,7 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Vendor',
         width: '15%',
         valuePrepareFunction: (value: Vendor) => {
-          return value.name;
+          return value?.name;
         },
       },
       changeVendor: {

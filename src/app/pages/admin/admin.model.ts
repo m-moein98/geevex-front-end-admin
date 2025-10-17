@@ -51,8 +51,10 @@ export interface Coin {
   name: string;
   fa_name: string;
   symbol: string;
-  daily_starting_price: number;
-  price: number;
+  daily_starting_irr_price: number;
+  daily_starting_usdt_price: number;
+  irr_price: number;
+  usdt_price: number;
   logo_url: string;
   is_sellable: boolean;
   is_buyable: boolean;
@@ -67,4 +69,22 @@ export interface Coin {
 
 export interface CoinsResponse extends Pagination {
   results: Coin[];
+}
+
+export interface CreateCoin {
+  name: string;
+  fa_name: string;
+  symbol: string;
+  daily_starting_irr_price: number;
+  daily_starting_usdt_price: number;
+  irr_price: number;
+  usdt_price: number;
+  is_sellable: boolean;
+  is_buyable: boolean;
+  amount_precision: number;
+  price_precision: number;
+  minimum_buy_amount: number;
+  minimum_sell_amount: number;
+  maximum_buy_amount: number;
+  maximum_sell_amount: number;
 }
