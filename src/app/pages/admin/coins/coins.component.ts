@@ -3,6 +3,7 @@ import { AdminService } from "../admin-service";
 import { NbDialogService } from "@nebular/theme";
 import { BaseTableComponent } from "../base-table/base-table.component";
 import { Coin, CoinsResponse } from "../admin.model";
+import { SetCoinVendorDialogComponent } from "./set-coin-vendor/set-coin-vendor.component";
 
 @Component({
   selector: "ngx-coins",
@@ -83,6 +84,17 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Maximum Sell Amount',
         width: '15%',
       },
+      vendor: {
+        title: 'Vendor',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(SetCoinVendorDialogComponent, {
+              context: { rowData }
+            })
+          })
+        },
+      }
     },
   });
 

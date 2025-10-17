@@ -1,0 +1,42 @@
+<div class="screen-75">
+  <nb-card>
+    <nb-card-header>
+      <h5>Set Vendor for {{ rowData?.symbol }}</h5>
+    </nb-card-header>
+
+    <nb-card-body *ngIf="!isLoading; else loading">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="label" for="vendor">Select Vendor</label>
+          <nb-select
+            id="vendor"
+            fullWidth
+            placeholder="Choose vendor"
+            formControlName="vendor_id"
+          >
+            <nb-option
+              *ngFor="let vendor of vendors"
+              [value]="vendor.id"
+            >
+              {{ vendor.name }}
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <button nbButton status="success" type="submit" [disabled]="form.invalid || isSubmitting">
+          <nb-icon icon="checkmark-outline"></nb-icon>
+          <span *ngIf="!isSubmitting">Save</span>
+          <span *ngIf="isSubmitting">Saving...</span>
+        </button>
+
+        <button nbButton status="basic" class="ml-2" (click)="ref.close()">Cancel</button>
+      </form>
+    </nb-card-body>
+
+    <ng-template #loading>
+      <div class="text-center py-5">
+        <nb-spinner></nb-spinner>
+      </div>
+    </ng-template>
+  </nb-card>
+</div>

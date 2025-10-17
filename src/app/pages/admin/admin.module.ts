@@ -35,6 +35,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { VendorsComponent } from "./vendors/vendors.component";
 import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadata/edit-vendor-metadata.component";
 import { CoinsComponent } from "./coins/coins.component";
+import { SetCoinVendorDialogComponent } from "./coins/set-coin-vendor/set-coin-vendor.component";
 
 @NgModule({
   imports: [
@@ -71,6 +72,7 @@ import { CoinsComponent } from "./coins/coins.component";
     VendorsComponent,
     EditVendorMetadataDialogComponent,
     CoinsComponent,
+    SetCoinVendorDialogComponent,
   ],
 })
 export class AdminModule { }
