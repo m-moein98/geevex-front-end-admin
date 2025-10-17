@@ -1,0 +1,17 @@
+<nb-card>
+  <nb-card-header>
+    Upload Coin Logo
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form">
+      <div class="form-group row">
+        <label class="label col-sm-3 col-form-label">Logo</label>
+        <div class="col-sm-9">
+          <input *ngIf="!form.controls['file'].value" nbInput fullWidth readonly placeholder="Click to select file" (click)="selectFile()" />
+          <input *ngIf="form.controls['file'].value" nbInput [value]="fileName()" fullWidth readonly />
+          <input id="file" style="display: none" type="file" formControlName="file" nbInput fullWidth (change)="uploadFile($event)" />
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

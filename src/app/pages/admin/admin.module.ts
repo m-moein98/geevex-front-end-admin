@@ -36,6 +36,8 @@ import { VendorsComponent } from "./vendors/vendors.component";
 import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadata/edit-vendor-metadata.component";
 import { CoinsComponent } from "./coins/coins.component";
 import { SetCoinVendorDialogComponent } from "./coins/set-coin-vendor/set-coin-vendor.component";
+import { SetCoinLogoDialogComponent } from "./coins/set-coin-logo/set-coin-logo.component";
+import { TableRowImageComponent } from "./table-row-image.component";
 
 @NgModule({
   imports: [
@@ -69,10 +71,12 @@ import { SetCoinVendorDialogComponent } from "./coins/set-coin-vendor/set-coin-v
     FiltersComponent,
     LoginComponent,
     CustomButtonComponent,
+    TableRowImageComponent,
     VendorsComponent,
     EditVendorMetadataDialogComponent,
     CoinsComponent,
     SetCoinVendorDialogComponent,
+    SetCoinLogoDialogComponent,
   ],
 })
 export class AdminModule { }

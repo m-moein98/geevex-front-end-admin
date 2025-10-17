@@ -62,6 +62,7 @@ export interface Coin {
   minimum_sell_amount: number;
   maximum_buy_amount: number;
   maximum_sell_amount: number;
+  vendor: Vendor;
 }
 
 export interface CoinsResponse extends Pagination {

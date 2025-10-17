@@ -110,4 +110,7 @@ export class AdminService {
   setCoinVendor(vendorId: number, coinId: number): Observable<BasicResponse> {
     return this.http.patch<BasicResponse>(`${apiEndpoints.vendors}${vendorId}/coins/${coinId}/`, {})
   }
+  setCoinLogo(coinId: number, data: FormData): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(`${apiEndpoints.coins}${coinId}/`, data)
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Pagination } from "../admin.model";
 import { LocalDataSource } from 'ng2-smart-table';
 import { CustomButtonComponent } from "../custom-button.component";
+import { TableRowImageComponent } from "../table-row-image.component";
 
 @Component({ template: '' })
 export class BaseTableComponent implements OnInit {
@@ -70,6 +71,15 @@ export class BaseTableComponent implements OnInit {
         filter: false,
         width: '5%',
         renderComponent: CustomButtonComponent,
+    }
+
+    imageColumnParams = {
+        type: 'custom',
+        editable: false,
+        addable: false,
+        filter: false,
+        width: '5%',
+        renderComponent: TableRowImageComponent,
     }
 
     settingsFactory = () => (

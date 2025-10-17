@@ -2,8 +2,9 @@ import { Component } from "@angular/core";
 import { AdminService } from "../admin-service";
 import { NbDialogService } from "@nebular/theme";
 import { BaseTableComponent } from "../base-table/base-table.component";
-import { Coin, CoinsResponse } from "../admin.model";
+import { Coin, CoinsResponse, Vendor } from "../admin.model";
 import { SetCoinVendorDialogComponent } from "./set-coin-vendor/set-coin-vendor.component";
+import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.component";
 
 @Component({
   selector: "ngx-coins",
@@ -48,10 +49,7 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Price',
         width: '15%',
       },
-      logo_url: {
-        title: 'Logo Url',
-        width: '15%',
-      },
+
       is_sellable: {
         title: 'Is Sellable',
         ...this.boolColumnParams,
@@ -86,15 +84,38 @@ export class CoinsComponent extends BaseTableComponent {
       },
       vendor: {
         title: 'Vendor',
+        width: '15%',
+        valuePrepareFunction: (value: Vendor) => {
+          return value.name;
+        },
+      },
+      changeVendor: {
+        title: 'Change Vendor',
         ...this.customColumnParams,
         onComponentInitFunction: (instance) => {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinVendorDialogComponent, {
               context: { rowData }
-            })
+            }).onClose.subscribe(() => this.getCoins())
           })
         },
-      }
+      },
+      logo_url: {
+        title: 'Logo',
+        width: '15%',
+        ...this.imageColumnParams,
+      },
+      changeLogo: {
+        title: 'Change Logo',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(SetCoinLogoDialogComponent, {
+              context: { rowData }
+            }).onClose.subscribe(() => this.getCoins())
+          })
+        },
+      },
     },
   });
 
