@@ -7,6 +7,7 @@ import { SetCoinVendorDialogComponent } from "./set-coin-vendor/set-coin-vendor.
 import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.component";
 import { concatMap, tap } from 'rxjs/operators';
 import { SetCoinDescriptionDialogComponent } from "./set-coin-description/set-coin-description.component";
+import { SetCoinSimilarCoinsDialogComponent } from "./set-coin-similar-coins/set-coin-similar-coins.component";
 
 @Component({
   selector: "ngx-coins",
@@ -131,6 +132,14 @@ export class CoinsComponent extends BaseTableComponent {
       similar_coins: {
         title: 'Similar Coins',
         width: '15%',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(SetCoinSimilarCoinsDialogComponent, {
+              context: { rowData }
+            })
+          })
+        },
       },
       description: {
         title: 'Description',
@@ -139,7 +148,7 @@ export class CoinsComponent extends BaseTableComponent {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinDescriptionDialogComponent, {
               context: { rowData, fieldName: 'description' }
-            }).onClose.subscribe(() => this.getCoins())
+            })
           })
         },
       },
@@ -150,7 +159,7 @@ export class CoinsComponent extends BaseTableComponent {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinDescriptionDialogComponent, {
               context: { rowData, fieldName: 'secondary_description' }
-            }).onClose.subscribe(() => this.getCoins())
+            })
           })
         },
 

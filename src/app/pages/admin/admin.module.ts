@@ -42,6 +42,7 @@ import { VideoPreviewComponent } from "./video-preview/video-preview.component";
 import { ImagePreviewComponent } from "./image-preview/image-preview.component";
 import { KYCComponent } from "./kyc/kyc.component";
 import { SetCoinDescriptionDialogComponent } from "./coins/set-coin-description/set-coin-description.component";
+import { SetCoinSimilarCoinsDialogComponent } from "./coins/set-coin-similar-coins/set-coin-similar-coins.component";
 
 @NgModule({
   imports: [
@@ -85,6 +86,7 @@ import { SetCoinDescriptionDialogComponent } from "./coins/set-coin-description/
     VideoPreviewComponent,
     ImagePreviewComponent,
     SetCoinDescriptionDialogComponent,
+    SetCoinSimilarCoinsDialogComponent,
   ],
 })
 export class AdminModule { }

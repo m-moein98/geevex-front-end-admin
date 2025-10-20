@@ -73,7 +73,6 @@ export interface BaseCoinDetail {
   market_cap: number;
   total_supply: number;
   circulating_supply: string;
-  similar_coins: Coin[];
   description: CoinDescription;
   secondary_description: CoinDescription;
   vendor: Vendor;
@@ -81,6 +80,7 @@ export interface BaseCoinDetail {
 
 export interface Coin extends BaseCoin, BaseCoinDetail {
   id: number;
+  similar_coins: Coin[];
 }
 
 export interface CoinsResponse extends Pagination {
@@ -96,6 +96,7 @@ export interface CoinDescription {
 }
 
 export interface UpdateCoin extends BaseCoin, BaseCoinDetail {
+  similar_coin_ids?: number[];
 }
 
 export interface KYCUser {
