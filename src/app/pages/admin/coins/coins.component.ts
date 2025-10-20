@@ -6,6 +6,7 @@ import { Coin, CoinsResponse, Vendor } from "../admin.model";
 import { SetCoinVendorDialogComponent } from "./set-coin-vendor/set-coin-vendor.component";
 import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.component";
 import { concatMap, tap } from 'rxjs/operators';
+import { SetCoinDescriptionDialogComponent } from "./set-coin-description/set-coin-description.component";
 
 @Component({
   selector: "ngx-coins",
@@ -20,7 +21,7 @@ export class CoinsComponent extends BaseTableComponent {
   ) {
     super()
     this.source.onAdded().pipe(
-      tap(() => {}),
+      tap(() => { }),
       concatMap(payload => this.service.createCoin(payload)),
     ).subscribe(this.updateObserver)
   }
@@ -94,6 +95,65 @@ export class CoinsComponent extends BaseTableComponent {
       maximum_sell_amount: {
         title: 'Maximum Sell Amount',
         width: '15%',
+      },
+      highest_daily_irr_price: {
+        title: 'Highest Daily IRR Price',
+        width: '15%',
+      },
+      highest_daily_usdt_price: {
+        title: 'Highest Daily USDT Price',
+        width: '15%',
+      },
+      lowest_daily_irr_price: {
+        title: 'Lowest Daily IRR Price',
+        width: '15%',
+      },
+      lowest_daily_usdt_price: {
+        title: 'Lowest Daily USDT Price',
+        width: '15%',
+      },
+      market_cap_rating: {
+        title: 'Market Cap Rating',
+        width: '15%',
+      },
+      market_cap: {
+        title: 'Market Cap',
+        width: '15%',
+      },
+      total_supply: {
+        title: 'Total Supply',
+        width: '15%',
+      },
+      circulating_supply: {
+        title: 'Circulating Supply',
+        width: '15%',
+      },
+      similar_coins: {
+        title: 'Similar Coins',
+        width: '15%',
+      },
+      description: {
+        title: 'Description',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(SetCoinDescriptionDialogComponent, {
+              context: { rowData, fieldName: 'description' }
+            }).onClose.subscribe(() => this.getCoins())
+          })
+        },
+      },
+      secondary_description: {
+        title: 'Secondary Description',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(SetCoinDescriptionDialogComponent, {
+              context: { rowData, fieldName: 'secondary_description' }
+            }).onClose.subscribe(() => this.getCoins())
+          })
+        },
+
       },
       vendor: {
         title: 'Vendor',

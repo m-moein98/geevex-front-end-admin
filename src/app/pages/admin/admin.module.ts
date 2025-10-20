@@ -41,6 +41,7 @@ import { TableRowImageComponent } from "./table-row-image.component";
 import { VideoPreviewComponent } from "./video-preview/video-preview.component";
 import { ImagePreviewComponent } from "./image-preview/image-preview.component";
 import { KYCComponent } from "./kyc/kyc.component";
+import { SetCoinDescriptionDialogComponent } from "./coins/set-coin-description/set-coin-description.component";
 
 @NgModule({
   imports: [
@@ -83,6 +84,7 @@ import { KYCComponent } from "./kyc/kyc.component";
     KYCComponent,
     VideoPreviewComponent,
     ImagePreviewComponent,
+    SetCoinDescriptionDialogComponent,
   ],
 })
 export class AdminModule { }

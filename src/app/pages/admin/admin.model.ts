@@ -46,8 +46,7 @@ export interface BasicResponse {
   detail: string;
 }
 
-export interface Coin {
-  id: number;
+export interface BaseCoin {
   name: string;
   fa_name: string;
   symbol: string;
@@ -55,7 +54,6 @@ export interface Coin {
   daily_starting_usdt_price: number;
   irr_price: number;
   usdt_price: number;
-  logo_url: string;
   is_sellable: boolean;
   is_buyable: boolean;
   amount_precision: number;
@@ -64,29 +62,40 @@ export interface Coin {
   minimum_sell_amount: number;
   maximum_buy_amount: number;
   maximum_sell_amount: number;
+}
+
+export interface BaseCoinDetail {
+  highest_daily_irr_price: number;
+  highest_daily_usdt_price: number;
+  lowest_daily_irr_price: number;
+  lowest_daily_usdt_price: number;
+  market_cap_rating: number;
+  market_cap: number;
+  total_supply: number;
+  circulating_supply: string;
+  similar_coins: Coin[];
+  description: CoinDescription;
+  secondary_description: CoinDescription;
   vendor: Vendor;
+}
+
+export interface Coin extends BaseCoin, BaseCoinDetail {
+  id: number;
 }
 
 export interface CoinsResponse extends Pagination {
   results: Coin[];
 }
 
-export interface CreateCoin {
-  name: string;
-  fa_name: string;
-  symbol: string;
-  daily_starting_irr_price: number;
-  daily_starting_usdt_price: number;
-  irr_price: number;
-  usdt_price: number;
-  is_sellable: boolean;
-  is_buyable: boolean;
-  amount_precision: number;
-  price_precision: number;
-  minimum_buy_amount: number;
-  minimum_sell_amount: number;
-  maximum_buy_amount: number;
-  maximum_sell_amount: number;
+export interface CreateCoin extends BaseCoin {
+}
+
+export interface CoinDescription {
+  title: string;
+  text: string;
+}
+
+export interface UpdateCoin extends BaseCoin, BaseCoinDetail {
 }
 
 export interface KYCUser {
