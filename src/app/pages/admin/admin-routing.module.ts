@@ -4,6 +4,8 @@ import { EnergyComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
 import { SettingsComponent } from './settings/settings.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { CoinsComponent } from './coins/coins.component';
+import { KYCComponent } from './kyc/kyc.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
       {
         path: 'vendors',
         component: VendorsComponent
+      },
+      {
+        path: 'coins',
+        component: CoinsComponent
+      },
+      {
+        path: 'kyc',
+        component: KYCComponent
       },
       {
         path: '',

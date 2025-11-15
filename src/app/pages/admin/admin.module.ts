@@ -34,6 +34,15 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { SettingsComponent } from "./settings/settings.component";
 import { VendorsComponent } from "./vendors/vendors.component";
 import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadata/edit-vendor-metadata.component";
+import { CoinsComponent } from "./coins/coins.component";
+import { SetCoinVendorDialogComponent } from "./coins/set-coin-vendor/set-coin-vendor.component";
+import { SetCoinLogoDialogComponent } from "./coins/set-coin-logo/set-coin-logo.component";
+import { TableRowImageComponent } from "./table-row-image.component";
+import { VideoPreviewComponent } from "./video-preview/video-preview.component";
+import { ImagePreviewComponent } from "./image-preview/image-preview.component";
+import { KYCComponent } from "./kyc/kyc.component";
+import { SetCoinDescriptionDialogComponent } from "./coins/set-coin-description/set-coin-description.component";
+import { SetCoinSimilarCoinsDialogComponent } from "./coins/set-coin-similar-coins/set-coin-similar-coins.component";
 
 @NgModule({
   imports: [
@@ -67,8 +76,17 @@ import { EditVendorMetadataDialogComponent } from "./vendors/edit-vendor-metadat
     FiltersComponent,
     LoginComponent,
     CustomButtonComponent,
+    TableRowImageComponent,
     VendorsComponent,
     EditVendorMetadataDialogComponent,
+    CoinsComponent,
+    SetCoinVendorDialogComponent,
+    SetCoinLogoDialogComponent,
+    KYCComponent,
+    VideoPreviewComponent,
+    ImagePreviewComponent,
+    SetCoinDescriptionDialogComponent,
+    SetCoinSimilarCoinsDialogComponent,
   ],
 })
 export class AdminModule { }

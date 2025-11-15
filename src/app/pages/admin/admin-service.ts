@@ -8,7 +8,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { Observable } from "rxjs";
-import { Vendor, VendorsResponse } from "./admin.model";
+import { BasicResponse, Coin, CoinsResponse, CreateCoin, KYCsResponse, UpdateCoin, Vendor, VendorsResponse } from "./admin.model";
 
 import { catchError, tap } from "rxjs/operators";
 import { apiEndpoints } from "../constants/apiendpoints";
@@ -101,7 +101,28 @@ export class AdminService {
   getVendors(): Observable<VendorsResponse> {
     return this.http.get<VendorsResponse>(apiEndpoints.vendors)
   }
-  updateVendor(data: Vendor): Observable<any> {
-    return this.http.patch<any>(apiEndpoints.vendors, data)
+  updateVendor(data: Vendor): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(apiEndpoints.vendors + data.id, data)
+  }
+  getCoins(): Observable<CoinsResponse> {
+    return this.http.get<CoinsResponse>(apiEndpoints.coins)
+  }
+  setCoinVendor(vendorId: number, coinId: number): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(`${apiEndpoints.vendors}${vendorId}/coins/${coinId}/`, {})
+  }
+  setCoinLogo(coinId: number, data: FormData): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(`${apiEndpoints.coins}${coinId}/`, data)
+  }
+  createCoin(data: CreateCoin): Observable<BasicResponse> {
+    return this.http.post<BasicResponse>(apiEndpoints.coins, data)
+  }
+  updateCoin(coinId: number, data: UpdateCoin): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(`${apiEndpoints.coins}${coinId}/`, data)
+  }
+  getKYCs(): Observable<KYCsResponse> {
+    return this.http.get<KYCsResponse>(apiEndpoints.kyc)
+  }
+  updateKYCStatus(kycId: number, status: string): Observable<BasicResponse> {
+    return this.http.patch<BasicResponse>(`${apiEndpoints.kyc}${kycId}/`, { status })
   }
 }

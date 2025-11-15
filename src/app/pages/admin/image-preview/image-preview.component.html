@@ -1,0 +1,17 @@
+<nb-card>
+  <nb-card-header>
+    Image Preview
+    <button nbButton ghost status="danger" size="tiny" (click)="close()" style="float: right;">
+      ✕
+    </button>
+  </nb-card-header>
+
+  <nb-card-body class="image-container">
+    <img *ngIf="rowData" [src]="rowData" alt="Preview" class="preview-image"
+      style="max-width: 50dvw; max-height: 50dvh;border-radius: 1%;" />
+
+    <p *ngIf="!rowData" class="text-center text-muted mt-2">
+      No image URL provided.
+    </p>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,44 @@
+<nb-card class="screen-75">
+  <nb-card-header>
+    <span>Set Coin Description</span>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input nbInput fullWidth id="title" formControlName="title" placeholder="Enter title" />
+        <small *ngIf="form.get('title')?.invalid && form.get('title')?.touched" class="text-danger">
+          Title is required
+        </small>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="text">Description</label>
+        <textarea
+          nbInput
+          fullWidth
+          id="text"
+          rows="4"
+          formControlName="text"
+          placeholder="Enter description"
+        ></textarea>
+        <small *ngIf="form.get('text')?.invalid && form.get('text')?.touched" class="text-danger">
+          Description is required
+        </small>
+      </div>
+    </form>
+  </nb-card-body>
+
+  <nb-card-footer class="flex justify-end gap-2">
+    <button nbButton status="basic" (click)="closeDialog()">Cancel</button>
+    <button
+      nbButton
+      status="primary"
+      [disabled]="form.invalid || isSubmitting"
+      (click)="onSubmit()"
+    >
+      {{ isSubmitting ? 'Saving...' : 'Save' }}
+    </button>
+  </nb-card-footer>
+</nb-card>
