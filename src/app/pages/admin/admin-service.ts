@@ -104,14 +104,14 @@ export class AdminService {
   updateVendor(data: Vendor): Observable<BasicResponse> {
     return this.http.patch<BasicResponse>(apiEndpoints.vendors + data.id, data)
   }
-  getCoins(): Observable<CoinsResponse> {
-    return this.http.get<CoinsResponse>(apiEndpoints.coins)
+  getCoins(): Observable<Coin[]> {
+    return this.http.get<Coin[]>(apiEndpoints.getCoins)
   }
   setCoinVendor(vendorId: number, coinId: number): Observable<BasicResponse> {
     return this.http.patch<BasicResponse>(`${apiEndpoints.vendors}${vendorId}/coins/${coinId}/`, {})
   }
   setCoinLogo(coinId: number, data: FormData): Observable<BasicResponse> {
-    return this.http.patch<BasicResponse>(`${apiEndpoints.coins}${coinId}/`, data)
+    return this.http.patch<BasicResponse>(`${apiEndpoints.coins}${coinId}/update-coin/`, data)
   }
   createCoin(data: CreateCoin): Observable<BasicResponse> {
     return this.http.post<BasicResponse>(apiEndpoints.coins, data)

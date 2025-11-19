@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { AdminService } from "../admin-service";
 import { NbDialogService } from "@nebular/theme";
 import { BaseTableComponent } from "../base-table/base-table.component";
-import { Coin, CoinsResponse, Vendor } from "../admin.model";
+import { Coin, Vendor } from "../admin.model";
 import { SetCoinVendorDialogComponent } from "./set-coin-vendor/set-coin-vendor.component";
 import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.component";
 import { concatMap, tap } from 'rxjs/operators';
@@ -207,11 +207,8 @@ export class CoinsComponent extends BaseTableComponent {
 
   getCoins() {
     this.service.getCoins().subscribe(
-      (res: CoinsResponse) => {
-        this.coins = res.results
-        this.pagination = {
-          count: res.count, next: res.next, previous: res.previous
-        }
+      (res: Coin[]) => {
+        this.coins = res
         this.isLoading = false
         this.source.load(this.coins)
         this.settings = this.settingsFactory()
