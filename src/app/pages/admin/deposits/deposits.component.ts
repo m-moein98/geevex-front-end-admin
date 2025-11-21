@@ -36,11 +36,13 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
           title: 'ID',
           type: 'number',
           width: '80px',
+          editable: false,
         },
         created_at: {
           title: 'Created At',
           type: 'date',
           width: '150px',
+          editable: false,
           valuePrepareFunction: (date: string) => {
             return new Date(date).toLocaleDateString();
           },
@@ -50,37 +52,50 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
           type: 'custom',
           renderComponent: 'coin-renderer',
           width: '120px',
+          editable: false,
         },
         network: {
           title: 'Network',
           type: 'string',
           width: '120px',
+          editable: false,
         },
         address: {
           title: 'Address',
           type: 'string',
           width: '200px',
+          editable: false,
         },
         status: {
           title: 'Status',
           type: 'custom',
           renderComponent: 'status-renderer',
           width: '120px',
+          editor: {
+            type: 'list',
+            config: {
+              selectText: 'Select',
+              list: this.depositStatuses.map(status => ({ value: status, title: status }))
+            }
+          }
         },
         type: {
           title: 'Type',
           type: 'custom',
           renderComponent: 'type-renderer',
           width: '120px',
+          editable: false,
         },
         source_card_number: {
           title: 'Source Card',
           type: 'string',
           width: '150px',
+          editable: false,
         },
         link: {
           title: 'Link',
           width: '150px',
+          editable: false,
         },
       },
     } as any;

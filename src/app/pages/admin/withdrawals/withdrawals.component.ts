@@ -14,7 +14,7 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
   withdrawalTypes: WithdrawalType[] = ['CRYPTO', 'CARD_PAYMENT'];
   selectedStatus: WithdrawalStatus | null = null;
   selectedType: WithdrawalType | null = null;
-  coinSymbol: string = 'BTC';
+  coinSymbol?: string = null;
   network: string = '';
   title: string = '';
 
@@ -35,11 +35,13 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
           title: 'ID',
           type: 'number',
           width: '80px',
+          editable: false,
         },
         created_at: {
           title: 'Created At',
           type: 'date',
           width: '150px',
+          editable: false,
           valuePrepareFunction: (date: string) => {
             return new Date(date).toLocaleDateString();
           },
@@ -49,11 +51,13 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
           type: 'custom',
           renderComponent: 'coin-renderer',
           width: '120px',
+          editable: false,
         },
         network: {
           title: 'Network',
           type: 'string',
           width: '120px',
+          editable: false,
         },
         address: {
           title: 'Address',
@@ -65,21 +69,31 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
           type: 'custom',
           renderComponent: 'status-renderer',
           width: '120px',
+          editor: {
+            type: 'list',
+            config: {
+              selectText: 'Select',
+              list: this.withdrawalStatuses.map(status => ({ value: status, title: status }))
+            }
+          }
         },
         type: {
           title: 'Type',
           type: 'custom',
           renderComponent: 'type-renderer',
           width: '120px',
+          editable: false,
         },
         title: {
           title: 'Title',
           type: 'string',
           width: '150px',
+          editable: false,
         },
         link: {
           title: 'Link',
           width: '150px',
+          editable: false,
         },
       },
     } as any;
