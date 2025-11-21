@@ -1,0 +1,19 @@
+.form-group {
+  margin-bottom: 1rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  textarea {
+    min-height: 100px;
+  }
+}
+
+nb-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}

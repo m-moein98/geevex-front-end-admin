@@ -36,46 +36,51 @@ function setMenuItems() {
         link: '/pages/admin/orders/playground',
         icon: 'code-outline',
       },
-      // {
-      //   title: 'accounting',
-      //   link: '/pages/admin/accounting',
-      //   icon: 'book-outline',
-      // },
-      // {
-      //   title: 'kyc',
-      //   link: '/pages/admin/kyc',
-      //   icon: 'checkmark-square-outline',
-      // },
-      // {
-      //   title: 'deposit',
-      //   link: '/pages/admin/deposit',
-      //   icon: 'download-outline',
-      // },
-      // {
-      //   title: 'withdrawal',
-      //   link: '/pages/admin/withdrawal',
-      //   icon: 'upload-outline',
-      // },
-      // {
-      //   title: 'exchange platform',
-      //   link: '/pages/admin/exchangeplatform',
-      //   icon: 'swap-outline',
-      // },
-      // {
-      //   title: 'fees',
-      //   link: '/pages/admin/fees',
-      //   icon: 'percent-outline',
-      // },
-      // {
-      //   title: 'notifications',
-      //   link: '/pages/admin/notifications',
-      //   icon: 'bell-outline',
-      // },
-      // {
-      //   title: 'ticketing',
-      //   link: '/pages/admin/ticketing',
-      //   icon: 'message-circle-outline',
-      // },
+      {
+        title: 'kyc',
+        link: '/pages/admin/kyc',
+        icon: 'checkmark-square-outline',
+      },
+      {
+        title: 'deposits',
+        link: '/pages/admin/deposits',
+        icon: 'download-outline',
+      },
+      {
+        title: 'withdrawals',
+        link: '/pages/admin/withdrawals',
+        icon: 'upload-outline',
+      },
+      {
+        title: 'orders',
+        link: '/pages/admin/orders',
+        icon: 'swap-outline',
+      },
+      {
+        title: 'notifications',
+        link: '/pages/admin/notifications',
+        icon: 'bell-outline',
+      },
+      {
+        title: 'tickets',
+        link: '/pages/admin/tickets',
+        icon: 'message-circle-outline',
+      },
+      {
+        title: 'faq',
+        link: '/pages/admin/faq',
+        icon: 'question-mark-circle-outline',
+      },
+      {
+        title: 'contact info',
+        link: '/pages/admin/contact-info',
+        icon: 'info-outline',
+      },
+      {
+        title: 'bots',
+        link: '/pages/admin/bots',
+        icon: 'settings-2-outline',
+      },
       // {
       //   title: 'users',
       //   link: '/pages/admin/users',

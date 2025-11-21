@@ -1,0 +1,94 @@
+<nb-card>
+  <nb-card-header>
+    <h4>Deposits Management</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <!-- Filters -->
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <nb-form-field>
+          <label for="status-filter">Status</label>
+          <nb-select 
+            id="status-filter" 
+            fullWidth 
+            placeholder="Filter by status"
+            [(selected)]="selectedStatus"
+            (selectedChange)="onStatusChange($event)">
+            <nb-option *ngFor="let status of depositStatuses" [value]="status">
+              {{ status }}
+            </nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      
+      <div class="col-md-3">
+        <nb-form-field>
+          <label for="type-filter">Type</label>
+          <nb-select 
+            id="type-filter" 
+            fullWidth 
+            placeholder="Filter by type"
+            [(selected)]="selectedType"
+            (selectedChange)="onTypeChange($event)">
+            <nb-option *ngFor="let type of depositTypes" [value]="type">
+              {{ type }}
+            </nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      
+      <div class="col-md-3">
+        <nb-form-field>
+          <label for="coin-filter">Coin ID</label>
+          <input 
+            nbInput 
+            id="coin-filter" 
+            type="number" 
+            fullWidth 
+            placeholder="Enter coin ID"
+            [(ngModel)]="coinId"
+            (ngModelChange)="onCoinIdChange($event)">
+        </nb-form-field>
+      </div>
+      
+      <div class="col-md-3">
+        <nb-form-field>
+          <label for="network-filter">Network</label>
+          <input 
+            nbInput 
+            id="network-filter" 
+            type="text" 
+            fullWidth 
+            placeholder="Enter network"
+            [(ngModel)]="network"
+            (ngModelChange)="onNetworkChange($event)">
+        </nb-form-field>
+      </div>
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <button 
+          nbButton 
+          status="primary" 
+          size="small"
+          (click)="resetFilters()">
+          <nb-icon icon="refresh-outline"></nb-icon>
+          Reset Filters
+        </button>
+      </div>
+    </div>
+    
+    <!-- Data Table -->
+    <div *ngIf="isLoading" class="text-center">
+      <nb-spinner></nb-spinner>
+    </div>
+    
+    <ng2-smart-table
+      *ngIf="!isLoading"
+      [settings]="settings"
+      [source]="source"
+      (edit)="onEdit($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

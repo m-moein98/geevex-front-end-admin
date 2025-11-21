@@ -1,0 +1,24 @@
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+  padding: 2rem;
+}
+
+nb-card {
+  margin-bottom: 2rem;
+}
+
+nb-form-field {
+  margin-bottom: 0.5rem;
+}
+
+button {
+  margin-right: 0.5rem;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+}

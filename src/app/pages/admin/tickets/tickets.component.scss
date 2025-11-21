@@ -1,0 +1,30 @@
+.text-right {
+  text-align: right;
+}
+
+nb-card-header {
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .col-md-6 {
+      flex: 1;
+      
+      &:first-child {
+        h4 {
+          margin: 0;
+          color: nb-theme(text-basic-color);
+        }
+      }
+      
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
+
+nb-select {
+  min-width: 200px;
+}
