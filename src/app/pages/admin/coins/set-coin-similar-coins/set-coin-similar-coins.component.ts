@@ -35,8 +35,8 @@ export class SetCoinSimilarCoinsDialogComponent implements OnInit {
 
   fetchAllCoins(): void {
     this.service.getCoins().subscribe({
-      next: (res: CoinsResponse) => {
-        this.allCoins = res.results.filter((c) => c.id !== this.rowData.id);
+      next: (res: Coin[]) => {
+        this.allCoins = res.filter((c) => c.id !== this.rowData.id);
         this.filteredCoins = [...this.allCoins];
 
         // Pre-select existing similar coins if any

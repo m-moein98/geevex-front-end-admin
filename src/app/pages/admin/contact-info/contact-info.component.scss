@@ -1,0 +1,26 @@
+.contact-info-form {
+  .row {
+    margin-bottom: 1rem;
+  }
+  
+  nb-form-field {
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    margin-right: 0.5rem;
+    
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  .mt-4 {
+    margin-top: 1.5rem;
+  }
+}
+
+.text-center {
+  text-align: center;
+  padding: 2rem;
+}

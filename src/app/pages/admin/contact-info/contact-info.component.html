@@ -1,0 +1,204 @@
+<nb-card>
+  <nb-card-header>
+    <h4>Contact Information Management</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="isLoading" class="text-center">
+      <nb-spinner></nb-spinner>
+    </div>
+    
+    <div *ngIf="!isLoading && contactInfo" class="contact-info-form">
+      <form (ngSubmit)="updateContactInfo()">
+        <div class="row">
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="support_email">Support Email</label>
+              <input 
+                nbInput 
+                id="support_email" 
+                type="email" 
+                fullWidth 
+                placeholder="Enter support email"
+                [value]="contactInfo.support_email || ''"
+                (input)="onFieldChange('support_email', $event.target.value)">
+            </nb-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="phone_number">Phone Number</label>
+              <input 
+                nbInput 
+                id="phone_number" 
+                type="tel" 
+                fullWidth 
+                placeholder="Enter phone number"
+                [value]="contactInfo.phone_number || ''"
+                (input)="onFieldChange('phone_number', $event.target.value)">
+            </nb-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12">
+            <nb-form-field>
+              <label for="address">Address</label>
+              <textarea 
+                nbInput 
+                id="address" 
+                fullWidth 
+                placeholder="Enter address"
+                [value]="contactInfo.address || ''"
+                (input)="onFieldChange('address', $event.target.value)">
+              </textarea>
+            </nb-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="telegram_link">Telegram Link</label>
+              <input 
+                nbInput 
+                id="telegram_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter Telegram link"
+                [value]="contactInfo.telegram_link || ''"
+                (input)="onFieldChange('telegram_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="instagram_link">Instagram Link</label>
+              <input 
+                nbInput 
+                id="instagram_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter Instagram link"
+                [value]="contactInfo.instagram_link || ''"
+                (input)="onFieldChange('instagram_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="whatsapp_link">WhatsApp Link</label>
+              <input 
+                nbInput 
+                id="whatsapp_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter WhatsApp link"
+                [value]="contactInfo.whatsapp_link || ''"
+                (input)="onFieldChange('whatsapp_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="youtube_link">YouTube Link</label>
+              <input 
+                nbInput 
+                id="youtube_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter YouTube link"
+                [value]="contactInfo.youtube_link || ''"
+                (input)="onFieldChange('youtube_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="eita_link">Eita Link</label>
+              <input 
+                nbInput 
+                id="eita_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter Eita link"
+                [value]="contactInfo.Eita_link || ''"
+                (input)="onFieldChange('Eita_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="bale_link">Bale Link</label>
+              <input 
+                nbInput 
+                id="bale_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter Bale link"
+                [value]="contactInfo.Bale_link || ''"
+                (input)="onFieldChange('Bale_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="rubika_link">Rubika Link</label>
+              <input 
+                nbInput 
+                id="rubika_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter Rubika link"
+                [value]="contactInfo.rubika_link || ''"
+                (input)="onFieldChange('rubika_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <nb-form-field>
+              <label for="neshan_link">Neshan Link</label>
+              <input 
+                nbInput 
+                id="neshan_link" 
+                type="url" 
+                fullWidth 
+                placeholder="Enter Neshan link"
+                [value]="contactInfo.neshan_link || ''"
+                (input)="onFieldChange('neshan_link', $event.target.value)">
+            </nb-form-field>
+          </div>
+        </div>
+        
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <button 
+              nbButton 
+              status="success" 
+              [disabled]="isLoading"
+              type="submit">
+              <nb-icon icon="save-outline" *ngIf="!isLoading"></nb-icon>
+              <nb-spinner *ngIf="isLoading" size="tiny"></nb-spinner>
+              Update Contact Info
+            </button>
+            
+            <button 
+              nbButton 
+              status="default" 
+              [disabled]="isLoading"
+              type="button"
+              (click)="resetForm()">
+              <nb-icon icon="refresh-outline"></nb-icon>
+              Reset
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

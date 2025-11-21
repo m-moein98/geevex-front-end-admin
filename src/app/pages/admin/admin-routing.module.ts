@@ -6,6 +6,15 @@ import { SettingsComponent } from './settings/settings.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { CoinsComponent } from './coins/coins.component';
 import { KYCComponent } from './kyc/kyc.component';
+import { OrderPlaygroundComponent } from './orders/order-playground.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { FAQComponent } from './faq/faq.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { DepositsComponent } from './deposits/deposits.component';
+import { WithdrawalsComponent } from './withdrawals/withdrawals.component';
+import { OrdersComponent } from './orders/orders.component';
+import { BotsComponent } from './bots/bots.component';
 
 const routes: Routes = [
   {
@@ -31,6 +40,42 @@ const routes: Routes = [
       {
         path: 'kyc',
         component: KYCComponent
+      },
+      {
+        path: 'orders/playground',
+        component: OrderPlaygroundComponent
+      },
+      {
+        path: 'tickets',
+        component: TicketsComponent
+      },
+      {
+        path: 'notifications',
+        component: NotificationsComponent
+      },
+      {
+        path: 'faq',
+        component: FAQComponent
+      },
+      {
+        path: 'contact-info',
+        component: ContactInfoComponent
+      },
+      {
+        path: 'deposits',
+        component: DepositsComponent
+      },
+      {
+        path: 'withdrawals',
+        component: WithdrawalsComponent
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent
+      },
+      {
+        path: 'bots',
+        component: BotsComponent
       },
       {
         path: '',

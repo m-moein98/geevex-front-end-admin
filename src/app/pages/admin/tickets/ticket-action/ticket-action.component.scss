@@ -1,0 +1,13 @@
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  
+  button {
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    
+    nb-icon {
+      font-size: 1rem;
+    }
+  }
+}

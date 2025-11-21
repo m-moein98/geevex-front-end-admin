@@ -1,0 +1,74 @@
+<nb-card>
+  <nb-card-header>
+    <h4>Trade Bots Management</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <!-- Filters Section -->
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <nb-form-field>
+          <nb-select
+            placeholder="Bot Type"
+            [(selected)]="selectedType"
+            (selectedChange)="onTypeChange($event)"
+            [fullWidth]="true">
+            <nb-option value="dca">DCA Trade Bots</nb-option>
+            <nb-option value="martingale">Martingale Trade Bots</nb-option>
+            <nb-option value="custom">Custom Trade Bots</nb-option>
+            <nb-option value="investment">Investments</nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-3">
+        <nb-form-field>
+          <nb-select
+            placeholder="Status"
+            [(selected)]="selectedStatus"
+            (selectedChange)="onStatusChange($event)"
+            [fullWidth]="true">
+            <nb-option *ngFor="let status of botStatuses" [value]="status">
+              {{ status }}
+            </nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-3" *ngIf="selectedType === 'investment'">
+        <nb-form-field>
+          <nb-select
+            placeholder="Investment Type"
+            [(selected)]="isPlusFilter"
+            (selectedChange)="onIsPlusChange($event)"
+            [fullWidth]="true">
+            <nb-option [value]="null">All</nb-option>
+            <nb-option [value]="true">Plus</nb-option>
+            <nb-option [value]="false">Regular</nb-option>
+          </nb-select>
+          <label hint="Filter by investment type">Investment Type</label>
+        </nb-form-field>
+      </div>
+      <div class="col-md-3">
+        <button
+          nbButton
+          status="basic"
+          outline
+          class="mt-3"
+          (click)="resetFilters()">
+          Reset Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (edit)="onEdit($event)"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="loading-overlay">
+  <nb-spinner status="primary"></nb-spinner>
+</div>

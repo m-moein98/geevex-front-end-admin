@@ -1,0 +1,48 @@
+<nb-card>
+  <nb-card-header>Order Playground</nb-card-header>
+
+  <nb-card-body>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="row">
+
+        <div class="col-6">
+          <label>From Coin Symbol</label>
+          <input type="text" nbInput fullWidth  formControlName="coinFrom" placeholder="Select coin">
+        </div>
+
+        <div class="col-6">
+          <label>To Coin Symbol</label>
+          <input type="text" nbInput fullWidth  formControlName="coinTo" placeholder="Select coin">
+        </div>
+
+      </div>
+
+      <br />
+
+      <label>Destination Amount</label>
+      <input nbInput fullWidth formControlName="destinationAmount" type="number" placeholder="Amount" />
+
+      <br /><br />
+
+      <label>Destination Price (optional)</label>
+      <input nbInput fullWidth formControlName="destinationPrice" type="number" placeholder="Price" />
+
+      <br /><br />
+
+      <button nbButton status="primary" fullWidth type="submit">
+        Submit
+      </button>
+
+    </form>
+
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="submittedData">
+  <nb-card-header>Submitted Values</nb-card-header>
+  <nb-card-body>
+    <pre>{{ submittedData | json }}</pre>
+  </nb-card-body>
+</nb-card>

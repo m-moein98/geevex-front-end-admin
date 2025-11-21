@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Ticket Management</h4>
+      </div>
+      <div class="col-md-6 text-right">
+        <nb-select 
+          placeholder="Filter by Status" 
+          [(selected)]="selectedStatus" 
+          (selectedChange)="onStatusChange($event)"
+          [fullWidth]="false">
+          <nb-option *ngFor="let status of ticketStatuses" [value]="status">
+            {{ status }}
+          </nb-option>
+        </nb-select>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

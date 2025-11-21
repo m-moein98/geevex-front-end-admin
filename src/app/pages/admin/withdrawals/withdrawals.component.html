@@ -1,0 +1,92 @@
+<nb-card>
+  <nb-card-header>
+    <h4>Withdrawals Management</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <!-- Filters Section -->
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <nb-form-field>
+          <nb-select
+            placeholder="Status"
+            [(selected)]="selectedStatus"
+            (selectedChange)="onStatusChange($event)"
+            [fullWidth]="true">
+            <nb-option *ngFor="let status of withdrawalStatuses" [value]="status">
+              {{ status }}
+            </nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <nb-select
+            placeholder="Type"
+            [(selected)]="selectedType"
+            (selectedChange)="onTypeChange($event)"
+            [fullWidth]="true">
+            <nb-option *ngFor="let type of withdrawalTypes" [value]="type">
+              {{ type }}
+            </nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            placeholder="Coin Symbol"
+            [(ngModel)]="coinSymbol"
+            (ngModelChange)="onCoinSymbolChange($event)">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            placeholder="Network"
+            [(ngModel)]="network"
+            (ngModelChange)="onNetworkChange($event)">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            placeholder="Title"
+            [(ngModel)]="title"
+            (ngModelChange)="onTitleChange($event)">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <button
+          nbButton
+          status="basic"
+          outline
+          class="mt-3"
+          (click)="resetFilters()">
+          Reset Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (edit)="onEdit($event)"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="loading-overlay">
+  <nb-spinner status="primary"></nb-spinner>
+</div>

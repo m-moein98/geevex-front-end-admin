@@ -1,0 +1,28 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>FAQ Management</h4>
+      </div>
+      <div class="col-md-6 text-right">
+        <nb-select 
+          placeholder="Filter by Category" 
+          [(selected)]="selectedCategory" 
+          (selectedChange)="onCategoryChange($event)"
+          [fullWidth]="false">
+          <nb-option *ngFor="let category of categoryOptions" [value]="category.value">
+            {{ category.title }}
+          </nb-option>
+        </nb-select>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (editConfirm)="onEdit($event)"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

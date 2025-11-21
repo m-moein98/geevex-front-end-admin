@@ -32,9 +32,9 @@ function setMenuItems() {
         icon: 'radio-button-on-outline',
       },
       {
-        title: 'accounting',
-        link: '/pages/admin/accounting',
-        icon: 'book-outline',
+        title: 'order playground',
+        link: '/pages/admin/orders/playground',
+        icon: 'code-outline',
       },
       {
         title: 'kyc',
@@ -42,24 +42,19 @@ function setMenuItems() {
         icon: 'checkmark-square-outline',
       },
       {
-        title: 'deposit',
-        link: '/pages/admin/deposit',
+        title: 'deposits',
+        link: '/pages/admin/deposits',
         icon: 'download-outline',
       },
       {
-        title: 'withdrawal',
-        link: '/pages/admin/withdrawal',
+        title: 'withdrawals',
+        link: '/pages/admin/withdrawals',
         icon: 'upload-outline',
       },
       {
-        title: 'exchange platform',
-        link: '/pages/admin/exchangeplatform',
+        title: 'orders',
+        link: '/pages/admin/orders',
         icon: 'swap-outline',
-      },
-      {
-        title: 'fees',
-        link: '/pages/admin/fees',
-        icon: 'percent-outline',
       },
       {
         title: 'notifications',
@@ -67,35 +62,50 @@ function setMenuItems() {
         icon: 'bell-outline',
       },
       {
-        title: 'ticketing',
-        link: '/pages/admin/ticketing',
+        title: 'tickets',
+        link: '/pages/admin/tickets',
         icon: 'message-circle-outline',
       },
       {
-        title: 'users',
-        link: '/pages/admin/users',
-        icon: 'people-outline',
+        title: 'faq',
+        link: '/pages/admin/faq',
+        icon: 'question-mark-circle-outline',
       },
       {
-        title: 'wallet',
-        link: '/pages/admin/wallet',
-        icon: 'credit-card-outline',
+        title: 'contact info',
+        link: '/pages/admin/contact-info',
+        icon: 'info-outline',
       },
       {
-        title: 'basket management',
-        link: '/pages/admin/basketmanagement',
-        icon: 'shopping-cart-outline',
-      },
-      {
-        title: 'geevbot',
-        link: '/pages/admin/geevbot',
+        title: 'bots',
+        link: '/pages/admin/bots',
         icon: 'settings-2-outline',
       },
-      {
-        title: 'geevfi',
-        link: '/pages/admin/geevfi',
-        icon: 'activity-outline',
-      },
+      // {
+      //   title: 'users',
+      //   link: '/pages/admin/users',
+      //   icon: 'people-outline',
+      // },
+      // {
+      //   title: 'wallet',
+      //   link: '/pages/admin/wallet',
+      //   icon: 'credit-card-outline',
+      // },
+      // {
+      //   title: 'basket management',
+      //   link: '/pages/admin/basketmanagement',
+      //   icon: 'shopping-cart-outline',
+      // },
+      // {
+      //   title: 'geevbot',
+      //   link: '/pages/admin/geevbot',
+      //   icon: 'settings-2-outline',
+      // },
+      // {
+      //   title: 'geevfi',
+      //   link: '/pages/admin/geevfi',
+      //   icon: 'activity-outline',
+      // },
     );
   }
 }

@@ -6,6 +6,7 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbDatepickerModule,
+  NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbListModule,
@@ -43,6 +44,19 @@ import { ImagePreviewComponent } from "./image-preview/image-preview.component";
 import { KYCComponent } from "./kyc/kyc.component";
 import { SetCoinDescriptionDialogComponent } from "./coins/set-coin-description/set-coin-description.component";
 import { SetCoinSimilarCoinsDialogComponent } from "./coins/set-coin-similar-coins/set-coin-similar-coins.component";
+import { ManageCoinDepositNetworksDialogComponent } from "./coins/manage-coin-deposit-networks/manage-coin-deposit-networks.component";
+import { ManageCoinWithdrawalNetworksDialogComponent } from "./coins/manage-coin-withdrawal-networks/manage-coin-withdrawal-networks.component";
+import { OrderPlaygroundComponent } from "./orders/order-playground.component";
+import { TicketsComponent } from "./tickets/tickets.component";
+import { TicketResponseDialogComponent } from "./tickets/ticket-response-dialog/ticket-response-dialog.component";
+import { TicketActionComponent } from "./tickets/ticket-action/ticket-action.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { FAQComponent } from "./faq/faq.component";
+import { ContactInfoComponent } from "./contact-info/contact-info.component";
+import { DepositsComponent } from "./deposits/deposits.component";
+import { WithdrawalsComponent } from "./withdrawals/withdrawals.component";
+import { OrdersComponent } from "./orders/orders.component";
+import { BotsComponent } from "./bots/bots.component";
 
 @NgModule({
   imports: [
@@ -55,6 +69,7 @@ import { SetCoinSimilarCoinsDialogComponent } from "./coins/set-coin-similar-coi
     NbCheckboxModule,
     NbRadioModule,
     NbDatepickerModule,
+    NbFormFieldModule,
     EnergyRoutingModule,
     NbSelectModule,
     NbIconModule,
@@ -87,6 +102,19 @@ import { SetCoinSimilarCoinsDialogComponent } from "./coins/set-coin-similar-coi
     ImagePreviewComponent,
     SetCoinDescriptionDialogComponent,
     SetCoinSimilarCoinsDialogComponent,
+    ManageCoinDepositNetworksDialogComponent,
+    ManageCoinWithdrawalNetworksDialogComponent,
+    OrderPlaygroundComponent,
+    TicketsComponent,
+    TicketResponseDialogComponent,
+    TicketActionComponent,
+    NotificationsComponent,
+    FAQComponent,
+    ContactInfoComponent,
+    DepositsComponent,
+    WithdrawalsComponent,
+    OrdersComponent,
+    BotsComponent,
   ],
 })
 export class AdminModule { }
