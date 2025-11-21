@@ -10,10 +10,10 @@ import { BaseTableComponent } from '../base-table/base-table.component';
   styleUrls: ['./deposits.component.scss'],
 })
 export class DepositsComponent extends BaseTableComponent implements OnInit {
-  
+
   depositStatuses: DepositStatus[] = ['INCOMPLETE', 'CHECKING', 'COMPLETED', 'CANCELLED', 'REJECTED'];
   depositTypes: DepositType[] = ['CRYPTO', 'CARD_PAYMENT', 'IBAN_PAYMENT', 'SHETAB_PAYMENT'];
-  
+
   selectedStatus: DepositStatus | null = null;
   selectedType: DepositType | null = null;
   coinId: number | null = null;
@@ -80,11 +80,7 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
         },
         link: {
           title: 'Link',
-          type: 'html',
           width: '150px',
-          valuePrepareFunction: (link: string) => {
-            return link ? `<a href="${link}" target="_blank">View</a>` : '-';
-          },
         },
       },
     } as any;

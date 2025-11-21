@@ -79,11 +79,7 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
         },
         link: {
           title: 'Link',
-          type: 'html',
           width: '150px',
-          valuePrepareFunction: (link: string) => {
-            return link ? `<a href="${link}" target="_blank">View</a>` : '-';
-          },
         },
       },
     } as any;

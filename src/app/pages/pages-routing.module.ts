@@ -79,7 +79,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: isLogedIn ? (isSuperuser ? 'admin/admins' : 'admin/forms') : 'admin/login',
+      redirectTo: isLogedIn ? (isSuperuser ? 'admin/admins' : 'admin/coins') : 'admin/login',
       pathMatch: 'full',
     },
     {

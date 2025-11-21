@@ -105,7 +105,7 @@ export class CoinsComponent extends BaseTableComponent {
             this.dialogService.open(SetCoinSimilarCoinsDialogComponent, {
               context: { rowData }
             })
-          })
+          }).onClose.subscribe(() => this.getCoins())
         },
       },
       description: {
@@ -115,7 +115,7 @@ export class CoinsComponent extends BaseTableComponent {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinDescriptionDialogComponent, {
               context: { rowData, fieldName: 'description', title: rowData.description?.title, text: rowData.description?.text }
-            })
+            }).onClose.subscribe(() => this.getCoins())
           })
         },
       },
@@ -126,7 +126,7 @@ export class CoinsComponent extends BaseTableComponent {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinDescriptionDialogComponent, {
               context: { rowData, fieldName: 'secondary_description' }
-            })
+            }).onClose.subscribe(() => this.getCoins())
           })
         },
 
