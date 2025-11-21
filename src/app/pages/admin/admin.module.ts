@@ -44,6 +44,8 @@ import { ImagePreviewComponent } from "./image-preview/image-preview.component";
 import { KYCComponent } from "./kyc/kyc.component";
 import { SetCoinDescriptionDialogComponent } from "./coins/set-coin-description/set-coin-description.component";
 import { SetCoinSimilarCoinsDialogComponent } from "./coins/set-coin-similar-coins/set-coin-similar-coins.component";
+import { ManageCoinDepositNetworksDialogComponent } from "./coins/manage-coin-deposit-networks/manage-coin-deposit-networks.component";
+import { ManageCoinWithdrawalNetworksDialogComponent } from "./coins/manage-coin-withdrawal-networks/manage-coin-withdrawal-networks.component";
 import { OrderPlaygroundComponent } from "./orders/order-playground.component";
 import { TicketsComponent } from "./tickets/tickets.component";
 import { TicketResponseDialogComponent } from "./tickets/ticket-response-dialog/ticket-response-dialog.component";
@@ -100,6 +102,8 @@ import { BotsComponent } from "./bots/bots.component";
     ImagePreviewComponent,
     SetCoinDescriptionDialogComponent,
     SetCoinSimilarCoinsDialogComponent,
+    ManageCoinDepositNetworksDialogComponent,
+    ManageCoinWithdrawalNetworksDialogComponent,
     OrderPlaygroundComponent,
     TicketsComponent,
     TicketResponseDialogComponent,

@@ -26,6 +26,9 @@ export class SetCoinVendorDialogComponent implements OnInit {
 
   ngOnInit() {
     this.getVendors()
+    this.form.patchValue({
+      vendor_id: this.rowData.vendor_id,
+    });
   }
 
   getVendors() {

@@ -8,6 +8,8 @@ import { SetCoinLogoDialogComponent } from "./set-coin-logo/set-coin-logo.compon
 import { concatMap, tap } from 'rxjs/operators';
 import { SetCoinDescriptionDialogComponent } from "./set-coin-description/set-coin-description.component";
 import { SetCoinSimilarCoinsDialogComponent } from "./set-coin-similar-coins/set-coin-similar-coins.component";
+import { ManageCoinDepositNetworksDialogComponent } from "./manage-coin-deposit-networks/manage-coin-deposit-networks.component";
+import { ManageCoinWithdrawalNetworksDialogComponent } from "./manage-coin-withdrawal-networks/manage-coin-withdrawal-networks.component";
 
 @Component({
   selector: "ngx-coins",
@@ -41,20 +43,17 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Name',
         width: '15%',
       },
-      fa_name: {
-        title: 'Fa Name',
+      logo_url: {
+        title: 'Logo',
         width: '15%',
+        ...this.imageColumnParams,
       },
       symbol: {
         title: 'Symbol',
-        width: '15%',
+        width: '10%',
       },
-      daily_starting_irr_price: {
-        title: 'Daily Starting IRR Price',
-        width: '15%',
-      },
-      daily_starting_usdt_price: {
-        title: 'Daily Starting USDT Price',
+      fa_name: {
+        title: 'Fa Name',
         width: '15%',
       },
       irr_price: {
@@ -97,38 +96,6 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Maximum Sell Amount',
         width: '15%',
       },
-      highest_daily_irr_price: {
-        title: 'Highest Daily IRR Price',
-        width: '15%',
-      },
-      highest_daily_usdt_price: {
-        title: 'Highest Daily USDT Price',
-        width: '15%',
-      },
-      lowest_daily_irr_price: {
-        title: 'Lowest Daily IRR Price',
-        width: '15%',
-      },
-      lowest_daily_usdt_price: {
-        title: 'Lowest Daily USDT Price',
-        width: '15%',
-      },
-      market_cap_rating: {
-        title: 'Market Cap Rating',
-        width: '15%',
-      },
-      market_cap: {
-        title: 'Market Cap',
-        width: '15%',
-      },
-      total_supply: {
-        title: 'Total Supply',
-        width: '15%',
-      },
-      circulating_supply: {
-        title: 'Circulating Supply',
-        width: '15%',
-      },
       similar_coins: {
         title: 'Similar Coins',
         width: '15%',
@@ -147,7 +114,7 @@ export class CoinsComponent extends BaseTableComponent {
         onComponentInitFunction: (instance) => {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinDescriptionDialogComponent, {
-              context: { rowData, fieldName: 'description' }
+              context: { rowData, fieldName: 'description', title: rowData.description?.title, text: rowData.description?.text }
             })
           })
         },
@@ -164,13 +131,6 @@ export class CoinsComponent extends BaseTableComponent {
         },
 
       },
-      vendor: {
-        title: 'Vendor',
-        width: '15%',
-        valuePrepareFunction: (value: Vendor) => {
-          return value?.name;
-        },
-      },
       changeVendor: {
         title: 'Change Vendor',
         ...this.customColumnParams,
@@ -182,17 +142,34 @@ export class CoinsComponent extends BaseTableComponent {
           })
         },
       },
-      logo_url: {
-        title: 'Logo',
-        width: '15%',
-        ...this.imageColumnParams,
-      },
       changeLogo: {
         title: 'Change Logo',
         ...this.customColumnParams,
         onComponentInitFunction: (instance) => {
           instance.buttonClick.subscribe((rowData: Coin) => {
             this.dialogService.open(SetCoinLogoDialogComponent, {
+              context: { rowData }
+            }).onClose.subscribe(() => this.getCoins())
+          })
+        },
+      },
+      manageDepositNetworks: {
+        title: 'Manage Deposit Networks',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(ManageCoinDepositNetworksDialogComponent, {
+              context: { rowData }
+            }).onClose.subscribe(() => this.getCoins())
+          })
+        },
+      },
+      manageWithdrawalNetworks: {
+        title: 'Manage Withdrawal Networks',
+        ...this.customColumnParams,
+        onComponentInitFunction: (instance) => {
+          instance.buttonClick.subscribe((rowData: Coin) => {
+            this.dialogService.open(ManageCoinWithdrawalNetworksDialogComponent, {
               context: { rowData }
             }).onClose.subscribe(() => this.getCoins())
           })

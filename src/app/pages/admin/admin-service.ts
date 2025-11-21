@@ -19,7 +19,9 @@ import { BasicResponse, Coin, CoinsResponse, CreateCoin, CreateOrderRequest, KYC
   DCATradeBot, CreateDCATradeBot, UpdateDCATradeBot,
   MartingaleTradeBot, CreateMartingaleTradeBot, UpdateTradeBot,
   CustomTradeBot, CreateCustomTradeBot,
-  Investment, CreateInvestment, UpdateInvestment, InvestmentsResponse } from "./admin.model";
+  Investment, CreateInvestment, UpdateInvestment, InvestmentsResponse,
+  CoinDepositNetwork, CoinDepositNetworksResponse, CreateCoinDepositNetwork, UpdateCoinDepositNetwork,
+  CoinWithdrawalNetwork, CoinWithdrawalNetworksResponse, CreateCoinWithdrawalNetwork, UpdateCoinWithdrawalNetwork } from "./admin.model";
 
 import { catchError, tap } from "rxjs/operators";
 import { apiEndpoints } from "../constants/apiendpoints";
@@ -90,7 +92,7 @@ export class AdminService {
           localStorage.setItem('accessToken', res["access"])
           localStorage.setItem('decodedToken', JSON.stringify(decodeJwt(res["access"])))
           localStorage.setItem('refreshToken', res["refresh"])
-          this.router.navigate(['pages/admin/dashboard'])
+          this.router.navigate(['pages/admin/coins'])
         } else {
           this.showToast('danger', 'error', 'Invalid username or password')
           throw new Error('Invalid username or password')
@@ -353,5 +355,75 @@ export class AdminService {
 
   updateInvestment(investmentId: number, data: UpdateInvestment): Observable<BasicResponse> {
     return this.http.patch<BasicResponse>(`${apiEndpoints.investments}${investmentId}`, data);
+  }
+
+  // Coin Deposit Networks API methods
+  getCoinDepositNetworks(params?: any): Observable<CoinDepositNetworksResponse> {
+    let url = apiEndpoints.coinDepositNetworks;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          if (Array.isArray(params[key])) {
+            params[key].forEach((value: any) => queryParams.append(key, value));
+          } else {
+            queryParams.append(key, params[key]);
+          }
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<CoinDepositNetworksResponse>(url);
+  }
+
+  getCoinDepositNetwork(depositNetworkId: number): Observable<CoinDepositNetwork> {
+    return this.http.get<CoinDepositNetwork>(`${apiEndpoints.coinDepositNetworks}${depositNetworkId}/`);
+  }
+
+  createCoinDepositNetwork(data: CreateCoinDepositNetwork): Observable<CoinDepositNetwork> {
+    return this.http.post<CoinDepositNetwork>(apiEndpoints.coinDepositNetworks, data);
+  }
+
+  updateCoinDepositNetwork(depositNetworkId: number, data: UpdateCoinDepositNetwork): Observable<CoinDepositNetwork> {
+    return this.http.patch<CoinDepositNetwork>(`${apiEndpoints.coinDepositNetworks}${depositNetworkId}/`, data);
+  }
+
+  deleteCoinDepositNetwork(depositNetworkId: number): Observable<BasicResponse> {
+    return this.http.delete<BasicResponse>(`${apiEndpoints.coinDepositNetworks}${depositNetworkId}/`);
+  }
+
+  // Coin Withdrawal Networks API methods
+  getCoinWithdrawalNetworks(params?: any): Observable<CoinWithdrawalNetworksResponse> {
+    let url = apiEndpoints.coinWithdrawalNetworks;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          if (Array.isArray(params[key])) {
+            params[key].forEach((value: any) => queryParams.append(key, value));
+          } else {
+            queryParams.append(key, params[key]);
+          }
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<CoinWithdrawalNetworksResponse>(url);
+  }
+
+  getCoinWithdrawalNetwork(withdrawalNetworkId: number): Observable<CoinWithdrawalNetwork> {
+    return this.http.get<CoinWithdrawalNetwork>(`${apiEndpoints.coinWithdrawalNetworks}${withdrawalNetworkId}/`);
+  }
+
+  createCoinWithdrawalNetwork(data: CreateCoinWithdrawalNetwork): Observable<CoinWithdrawalNetwork> {
+    return this.http.post<CoinWithdrawalNetwork>(apiEndpoints.coinWithdrawalNetworks, data);
+  }
+
+  updateCoinWithdrawalNetwork(withdrawalNetworkId: number, data: UpdateCoinWithdrawalNetwork): Observable<CoinWithdrawalNetwork> {
+    return this.http.patch<CoinWithdrawalNetwork>(`${apiEndpoints.coinWithdrawalNetworks}${withdrawalNetworkId}/`, data);
+  }
+
+  deleteCoinWithdrawalNetwork(withdrawalNetworkId: number): Observable<BasicResponse> {
+    return this.http.delete<BasicResponse>(`${apiEndpoints.coinWithdrawalNetworks}${withdrawalNetworkId}/`);
   }
 }

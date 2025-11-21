@@ -19,4 +19,6 @@ export const apiEndpoints = {
     martingaleTradeBots: `${baseurl}/trade-bot/martingle-trade-bot/`,
     customTradeBots: `${baseurl}/trade-bot/custom-trade-bot/`,
     investments: `${baseurl}/trade-bot/investment/`,
+    coinDepositNetworks: `${baseurl}/coins/deposit-networks/`,
+    coinWithdrawalNetworks: `${baseurl}/coins/withdrawal-networks/`,
 }

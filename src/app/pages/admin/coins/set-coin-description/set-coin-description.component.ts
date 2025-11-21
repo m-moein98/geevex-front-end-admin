@@ -11,6 +11,8 @@ import { BasicResponse, Coin } from '../../admin.model';
 })
 export class SetCoinDescriptionDialogComponent implements OnInit {
   rowData!: Coin;
+  title!: string;
+  text!: string;
   fieldName!: string;
   isSubmitting = false;
 
@@ -23,13 +25,10 @@ export class SetCoinDescriptionDialogComponent implements OnInit {
     protected ref: NbDialogRef<SetCoinDescriptionDialogComponent>,
     private service: AdminService,
     private toastService: ToastService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    if (this.rowData && this.fieldName && this.rowData[this.fieldName]) {
-      const { title, text } = this.rowData[this.fieldName];
-      this.form.patchValue({ title, text });
-    }
+    this.form.patchValue({ title: this.title, text: this.text });
   }
 
   onSubmit(): void {

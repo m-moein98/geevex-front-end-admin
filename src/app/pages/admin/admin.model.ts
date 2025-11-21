@@ -76,6 +76,7 @@ export interface BaseCoinDetail {
   description: CoinDescription;
   secondary_description: CoinDescription;
   vendor: Vendor;
+  vendor_id: number;
 }
 
 export interface Coin extends BaseCoin, BaseCoinDetail {
@@ -495,4 +496,62 @@ export interface BotsResponse {
 
 export interface InvestmentsResponse {
   results: Investment[];
+}
+
+// Coin Deposit Network interfaces
+export interface CoinDepositNetwork {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  coin: BaseCoin | null;
+  type: string;
+  network: string;
+  address: string;
+  is_active: boolean;
+}
+
+export interface CoinDepositNetworksResponse {
+  results: CoinDepositNetwork[];
+}
+
+export interface CreateCoinDepositNetwork {
+  coin_id: number;
+  type: string;
+  network: string;
+  address: string;
+  is_active?: boolean;
+}
+
+export interface UpdateCoinDepositNetwork {
+  coin_id?: number | null;
+  type?: string | null;
+  network?: string | null;
+  address?: string | null;
+  is_active?: boolean | null;
+}
+
+// Coin Withdrawal Network interfaces
+export interface CoinWithdrawalNetwork {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  coin: BaseCoin | null;
+  network: string;
+  is_active: boolean;
+}
+
+export interface CoinWithdrawalNetworksResponse {
+  results: CoinWithdrawalNetwork[];
+}
+
+export interface CreateCoinWithdrawalNetwork {
+  coin_id: number;
+  network: string;
+  is_active?: boolean;
+}
+
+export interface UpdateCoinWithdrawalNetwork {
+  coin_id?: number | null;
+  network?: string | null;
+  is_active?: boolean | null;
 }
