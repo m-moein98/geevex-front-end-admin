@@ -125,3 +125,12 @@ export interface KYC {
 export interface KYCsResponse extends Pagination {
   results: KYC[];
 }
+
+export interface CreateOrder {
+  type: string;
+  action: string;
+  source_coin_symbol: string;
+  destination_coin_symbol: string;
+  destination_amount: number;
+  destination_price: number;
+}

@@ -6,6 +6,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { CoinsComponent } from './coins/coins.component';
 import { KYCComponent } from './kyc/kyc.component';
+import { OrderPlaygroundComponent } from './orders/order-playground.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'kyc',
         component: KYCComponent
+      },
+      {
+        path: 'orders/playground',
+        component: OrderPlaygroundComponent
       },
       {
         path: '',

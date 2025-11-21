@@ -8,7 +8,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { Observable } from "rxjs";
-import { BasicResponse, Coin, CoinsResponse, CreateCoin, KYCsResponse, UpdateCoin, Vendor, VendorsResponse } from "./admin.model";
+import { BasicResponse, Coin, CoinsResponse, CreateCoin, CreateOrder, KYCsResponse, UpdateCoin, Vendor, VendorsResponse } from "./admin.model";
 
 import { catchError, tap } from "rxjs/operators";
 import { apiEndpoints } from "../constants/apiendpoints";
@@ -124,5 +124,8 @@ export class AdminService {
   }
   updateKYCStatus(kycId: number, status: string): Observable<BasicResponse> {
     return this.http.patch<BasicResponse>(`${apiEndpoints.kyc}${kycId}/`, { status })
+  }
+  createOrder(data: CreateOrder): Observable<BasicResponse> {
+    return this.http.post<BasicResponse>(apiEndpoints.orders, data)
   }
 }
