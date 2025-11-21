@@ -32,70 +32,75 @@ function setMenuItems() {
         icon: 'radio-button-on-outline',
       },
       {
-        title: 'accounting',
-        link: '/pages/admin/accounting',
-        icon: 'book-outline',
+        title: 'order playground',
+        link: '/pages/admin/orders/playground',
+        icon: 'code-outline',
       },
-      {
-        title: 'kyc',
-        link: '/pages/admin/kyc',
-        icon: 'checkmark-square-outline',
-      },
-      {
-        title: 'deposit',
-        link: '/pages/admin/deposit',
-        icon: 'download-outline',
-      },
-      {
-        title: 'withdrawal',
-        link: '/pages/admin/withdrawal',
-        icon: 'upload-outline',
-      },
-      {
-        title: 'exchange platform',
-        link: '/pages/admin/exchangeplatform',
-        icon: 'swap-outline',
-      },
-      {
-        title: 'fees',
-        link: '/pages/admin/fees',
-        icon: 'percent-outline',
-      },
-      {
-        title: 'notifications',
-        link: '/pages/admin/notifications',
-        icon: 'bell-outline',
-      },
-      {
-        title: 'ticketing',
-        link: '/pages/admin/ticketing',
-        icon: 'message-circle-outline',
-      },
-      {
-        title: 'users',
-        link: '/pages/admin/users',
-        icon: 'people-outline',
-      },
-      {
-        title: 'wallet',
-        link: '/pages/admin/wallet',
-        icon: 'credit-card-outline',
-      },
-      {
-        title: 'basket management',
-        link: '/pages/admin/basketmanagement',
-        icon: 'shopping-cart-outline',
-      },
-      {
-        title: 'geevbot',
-        link: '/pages/admin/geevbot',
-        icon: 'settings-2-outline',
-      },
-      {
-        title: 'geevfi',
-        link: '/pages/admin/geevfi',
-        icon: 'activity-outline',
-      },
+      // {
+      //   title: 'accounting',
+      //   link: '/pages/admin/accounting',
+      //   icon: 'book-outline',
+      // },
+      // {
+      //   title: 'kyc',
+      //   link: '/pages/admin/kyc',
+      //   icon: 'checkmark-square-outline',
+      // },
+      // {
+      //   title: 'deposit',
+      //   link: '/pages/admin/deposit',
+      //   icon: 'download-outline',
+      // },
+      // {
+      //   title: 'withdrawal',
+      //   link: '/pages/admin/withdrawal',
+      //   icon: 'upload-outline',
+      // },
+      // {
+      //   title: 'exchange platform',
+      //   link: '/pages/admin/exchangeplatform',
+      //   icon: 'swap-outline',
+      // },
+      // {
+      //   title: 'fees',
+      //   link: '/pages/admin/fees',
+      //   icon: 'percent-outline',
+      // },
+      // {
+      //   title: 'notifications',
+      //   link: '/pages/admin/notifications',
+      //   icon: 'bell-outline',
+      // },
+      // {
+      //   title: 'ticketing',
+      //   link: '/pages/admin/ticketing',
+      //   icon: 'message-circle-outline',
+      // },
+      // {
+      //   title: 'users',
+      //   link: '/pages/admin/users',
+      //   icon: 'people-outline',
+      // },
+      // {
+      //   title: 'wallet',
+      //   link: '/pages/admin/wallet',
+      //   icon: 'credit-card-outline',
+      // },
+      // {
+      //   title: 'basket management',
+      //   link: '/pages/admin/basketmanagement',
+      //   icon: 'shopping-cart-outline',
+      // },
+      // {
+      //   title: 'geevbot',
+      //   link: '/pages/admin/geevbot',
+      //   icon: 'settings-2-outline',
+      // },
+      // {
+      //   title: 'geevfi',
+      //   link: '/pages/admin/geevfi',
+      //   icon: 'activity-outline',
+      // },
     );
   }
 }
