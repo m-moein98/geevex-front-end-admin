@@ -1,4 +1,4 @@
-let baseurl = 'https://api-dev.tplift.ir:2083/api';
+let baseurl = 'https://api.ipharkat.ir/api';
 
 export const apiEndpoints = {
     upload: `${baseurl}/form/upload/`,
