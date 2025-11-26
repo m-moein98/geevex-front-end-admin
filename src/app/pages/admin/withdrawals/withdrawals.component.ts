@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin-service';
-import { Withdrawal, WithdrawalStatus, WithdrawalType } from '../admin.model';
+import { Withdrawal, WithdrawalStatus, WithdrawalType, Coin } from '../admin.model';
 import { NbToastrService } from '@nebular/theme';
 import { BaseTableComponent } from '../base-table/base-table.component';
 
@@ -17,6 +17,7 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
   coinSymbol?: string = null;
   network: string = '';
   title: string = '';
+  coins: Coin[] = [];
 
   constructor(
     private adminService: AdminService,
@@ -100,6 +101,36 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCoins();
+    this.loadData();
+  }
+
+  getCoins() {
+    this.adminService.getCoins().subscribe(
+      (res: Coin[]) => {
+        this.coins = res;
+      },
+      () => {
+        this.toastrService.danger('Failed to load coins', 'Error');
+      }
+    );
+  }
+
+  getCoinDisplay(symbol: string): string {
+    if (!symbol) return '';
+    const coin = this.coins.find(c => c.symbol === symbol);
+    return coin ? `${coin.symbol} - ${coin.name}` : symbol;
+  }
+
+  onCoinInput(event: any) {
+    const value = event.target.value;
+    const selectedCoin = this.coins.find(c => `${c.symbol} - ${c.name}` === value);
+    
+    if (selectedCoin) {
+      this.coinSymbol = selectedCoin.symbol;
+    } else {
+      this.coinSymbol = value === '' ? null : value;
+    }
     this.loadData();
   }
 

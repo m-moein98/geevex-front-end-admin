@@ -253,7 +253,7 @@ export interface Order {
   status: OrderStatus;
 }
 
-export type OrderAction = 'buy' | 'sell';
+export type OrderAction = 'buy' | 'sell' | 'swap';
 export type OrderStatus = 'CREATED' | 'CANCELLED' | 'IN_PROGRESS' | 'FAILED' | 'COMPLETED';
 
 export interface OrderResponse {

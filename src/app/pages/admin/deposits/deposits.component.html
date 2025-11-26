@@ -39,15 +39,18 @@
       
       <div class="col-md-3">
         <nb-form-field>
-          <label for="coin-filter">Coin ID</label>
-          <input 
-            nbInput 
-            id="coin-filter" 
-            type="number" 
-            fullWidth 
-            placeholder="Enter coin ID"
-            [(ngModel)]="coinId"
-            (ngModelChange)="onCoinIdChange($event)">
+          <label for="coin-filter">Coin</label>
+          <input
+            nbInput
+            id="coin-filter"
+            fullWidth
+            list="coinList"
+            placeholder="Select coin"
+            [value]="getCoinDisplay(coinId)"
+            (input)="onCoinInput($event)">
+          <datalist id="coinList">
+            <option *ngFor="let coin of coins" [value]="coin.symbol + ' - ' + coin.name"></option>
+          </datalist>
         </nb-form-field>
       </div>
       

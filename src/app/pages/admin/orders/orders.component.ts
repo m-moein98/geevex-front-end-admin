@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin-service';
-import { Order, OrderStatus, OrderAction } from '../admin.model';
+import { Order, OrderStatus, OrderAction, Coin } from '../admin.model';
 import { NbToastrService } from '@nebular/theme';
 import { BaseTableComponent } from '../base-table/base-table.component';
 
@@ -10,13 +10,13 @@ import { BaseTableComponent } from '../base-table/base-table.component';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent extends BaseTableComponent implements OnInit {
-
   orderStatuses: OrderStatus[] = ['CREATED', 'CANCELLED', 'IN_PROGRESS', 'FAILED', 'COMPLETED'];
-  orderActions: OrderAction[] = ['buy', 'sell'];
+  orderActions: OrderAction[] = ['buy', 'sell', 'swap'];
   selectedStatus: OrderStatus[] = [];
   selectedAction: OrderAction | null = null;
   sourceCoinId: number | null = null;
   destinationCoinId: number | null = null;
+  coins: Coin[] = [];
 
   constructor(
     private adminService: AdminService,
@@ -46,21 +46,18 @@ export class OrdersComponent extends BaseTableComponent implements OnInit {
         },
         action: {
           title: 'Action',
-          type: 'custom',
-          renderComponent: 'action-renderer',
-          width: '100px',
         },
         source_coin: {
           title: 'Source Coin',
-          type: 'custom',
-          renderComponent: 'coin-renderer',
-          width: '120px',
+          valuePrepareFunction: (value: Coin) => {
+            return value.symbol
+          },
         },
         destination_coin: {
           title: 'Destination Coin',
-          type: 'custom',
-          renderComponent: 'coin-renderer',
-          width: '120px',
+          valuePrepareFunction: (value: Coin) => {
+            return value.symbol
+          },
         },
         source_amount: {
           title: 'Source Amount',
@@ -113,7 +110,38 @@ export class OrdersComponent extends BaseTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCoins();
     this.loadData();
+  }
+
+  getCoins() {
+    this.adminService.getCoins().subscribe(
+      (res: Coin[]) => {
+        this.coins = res;
+      },
+      () => {
+        this.toastrService.danger('Failed to load coins', 'Error');
+      }
+    );
+  }
+
+  getCoinDisplay(coinId: any): string {
+    if (!coinId) return '';
+    const coin = this.coins.find(c => c.id === coinId);
+    return coin ? `${coin.symbol} - ${coin.name}` : '';
+  }
+
+  onCoinInput(event: any, type: 'source' | 'destination') {
+    const value = event.target.value;
+    const selectedCoin = this.coins.find(c => `${c.symbol} - ${c.name}` === value);
+    
+    if (type === 'source') {
+      this.sourceCoinId = selectedCoin ? selectedCoin.id : null;
+      this.loadData();
+    } else {
+      this.destinationCoinId = selectedCoin ? selectedCoin.id : null;
+      this.loadData();
+    }
   }
 
   loadData(): void {
