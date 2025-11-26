@@ -105,7 +105,7 @@ export class CoinsComponent extends BaseTableComponent {
             this.dialogService.open(SetCoinSimilarCoinsDialogComponent, {
               context: { rowData }
             })
-          }).onClose.subscribe(() => this.getCoins())
+          })
         },
       },
       description: {
@@ -129,7 +129,6 @@ export class CoinsComponent extends BaseTableComponent {
             }).onClose.subscribe(() => this.getCoins())
           })
         },
-
       },
       changeVendor: {
         title: 'Change Vendor',
