@@ -159,4 +159,20 @@ export class ManageCoinWithdrawalNetworksDialogComponent implements OnInit {
   close() {
     this.ref.close(true);
   }
+
+  getCoinDisplay(coinId: any): string {
+    if (!coinId) return '';
+    const coin = this.coins.find(c => c.id === coinId);
+    return coin ? `${coin.symbol} - ${coin.name}` : '';
+  }
+
+  onCoinInput(event: any) {
+    const value = event.target.value;
+    const selectedCoin = this.coins.find(c => `${c.symbol} - ${c.name}` === value);
+    if (selectedCoin) {
+      this.form.patchValue({ coin_id: selectedCoin.id });
+    } else {
+      this.form.patchValue({ coin_id: null });
+    }
+  }
 }
