@@ -36,10 +36,13 @@
           <input
             nbInput
             fullWidth
-            type="text"
+            list="coinList"
             placeholder="Coin Symbol"
-            [(ngModel)]="coinSymbol"
-            (ngModelChange)="onCoinSymbolChange($event)">
+            [value]="getCoinDisplay(coinSymbol)"
+            (input)="onCoinInput($event)">
+          <datalist id="coinList">
+            <option *ngFor="let coin of coins" [value]="coin.symbol + ' - ' + coin.name"></option>
+          </datalist>
         </nb-form-field>
       </div>
       <div class="col-md-2">
@@ -69,7 +72,6 @@
           nbButton
           status="basic"
           outline
-          class="mt-3"
           (click)="resetFilters()">
           Reset Filters
         </button>

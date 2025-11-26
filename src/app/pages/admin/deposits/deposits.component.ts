@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin-service';
-import { Deposit, DepositStatus, DepositType } from '../admin.model';
+import { Deposit, DepositStatus, DepositType, Coin } from '../admin.model';
 import { NbToastrService } from '@nebular/theme';
 import { BaseTableComponent } from '../base-table/base-table.component';
 
@@ -18,6 +18,7 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
   selectedType: DepositType | null = null;
   coinId: number | null = null;
   network: string = '';
+  coins: Coin[] = [];
 
   constructor(
     private adminService: AdminService,
@@ -102,6 +103,31 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCoins();
+    this.loadData();
+  }
+
+  getCoins() {
+    this.adminService.getCoins().subscribe(
+      (res: Coin[]) => {
+        this.coins = res;
+      },
+      () => {
+        this.toastrService.danger('Failed to load coins', 'Error');
+      }
+    );
+  }
+
+  getCoinDisplay(coinId: any): string {
+    if (!coinId) return '';
+    const coin = this.coins.find(c => c.id === coinId);
+    return coin ? `${coin.symbol} - ${coin.name}` : '';
+  }
+
+  onCoinInput(event: any) {
+    const value = event.target.value;
+    const selectedCoin = this.coins.find(c => `${c.symbol} - ${c.name}` === value);
+    this.coinId = selectedCoin ? selectedCoin.id : null;
     this.loadData();
   }
 

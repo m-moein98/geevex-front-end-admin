@@ -36,10 +36,13 @@
           <input
             nbInput
             fullWidth
-            type="number"
-            placeholder="Source Coin ID"
-            [(ngModel)]="sourceCoinId"
-            (ngModelChange)="onSourceCoinChange($event)">
+            list="sourceCoinList"
+            placeholder="Source Coin"
+            [value]="getCoinDisplay(sourceCoinId)"
+            (input)="onCoinInput($event, 'source')">
+          <datalist id="sourceCoinList">
+            <option *ngFor="let coin of coins" [value]="coin.symbol + ' - ' + coin.name"></option>
+          </datalist>
         </nb-form-field>
       </div>
       <div class="col-md-2">
@@ -47,10 +50,13 @@
           <input
             nbInput
             fullWidth
-            type="number"
-            placeholder="Destination Coin ID"
-            [(ngModel)]="destinationCoinId"
-            (ngModelChange)="onDestinationCoinChange($event)">
+            list="destCoinList"
+            placeholder="Destination Coin"
+            [value]="getCoinDisplay(destinationCoinId)"
+            (input)="onCoinInput($event, 'destination')">
+          <datalist id="destCoinList">
+            <option *ngFor="let coin of coins" [value]="coin.symbol + ' - ' + coin.name"></option>
+          </datalist>
         </nb-form-field>
       </div>
       <div class="col-md-2">
@@ -58,7 +64,6 @@
           nbButton
           status="basic"
           outline
-          class="mt-3"
           (click)="resetFilters()">
           Reset Filters
         </button>
