@@ -41,6 +41,11 @@ export class KYCComponent extends BaseTableComponent {
         valuePrepareFunction: (value: KYCUser) => {
           return value?.phone;
         },
+        filterFunction: (cellValue: any, searchTerm: string) => {
+          if (!searchTerm) return true;
+          if (!cellValue) return false;
+          return cellValue.phone && cellValue.phone.toLowerCase().includes(searchTerm.toLowerCase());
+        },
         editor: {
           type: 'list',
           config: {
