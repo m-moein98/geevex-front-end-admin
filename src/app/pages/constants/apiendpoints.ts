@@ -1,4 +1,4 @@
-let baseurl = 'https://api-dev.tplift.ir:2083/api';
+let baseurl = 'https://api.ipharkat.ir/api';
 
 if (process.env.NODE_ENV === 'development') {
     baseurl = 'http://localhost:8000/api';
