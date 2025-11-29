@@ -44,7 +44,7 @@ export class KYCComponent extends BaseTableComponent {
         width: '15%',
         editable: false,
         valuePrepareFunction: (value: KYCUser) => {
-          return value?.email;
+          return value?.phone;
         },
         editor: {
           type: 'list',

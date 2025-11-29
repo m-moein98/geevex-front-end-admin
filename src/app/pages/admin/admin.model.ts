@@ -108,6 +108,7 @@ export interface UpdateCoin extends BaseCoin, BaseCoinDetail {
 export interface KYCUser {
   id: number;
   email: string;
+  phone: string;
 }
 
 export interface KYC {
