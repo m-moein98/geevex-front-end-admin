@@ -7,8 +7,35 @@
   padding: 2rem;
 }
 
+.text-right {
+  text-align: right;
+}
+
 nb-card {
   margin-bottom: 2rem;
+}
+
+nb-card-header {
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .col-md-6 {
+      flex: 1;
+      
+      &:first-child {
+        h4 {
+          margin: 0;
+          color: nb-theme(text-basic-color);
+        }
+      }
+      
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
 }
 
 nb-form-field {
@@ -21,4 +48,8 @@ button {
   &:last-child {
     margin-right: 0;
   }
+}
+
+.apply-all-btn {
+  margin-right: 10px;
 }

@@ -171,4 +171,23 @@ export class KYCComponent extends BaseTableComponent {
       }
     );
   }
+
+  applyAll() {
+    // Find all elements with nb-checkmark class
+    const checkmarkElements = document.querySelectorAll('i.nb-checkmark');
+    
+    if (checkmarkElements.length === 0) {
+      this.toastService.showToast('info', 'info', 'No checkmark elements found to apply');
+      return;
+    }
+
+    // Click on each checkmark element
+    checkmarkElements.forEach((element, index) => {
+      setTimeout(() => {
+        (element as HTMLElement).click();
+      }, index * 100); // Add small delay between clicks
+    });
+
+    this.toastService.showToast('success', 'success', `Applied ${checkmarkElements.length} checkmarks`);
+  }
 }

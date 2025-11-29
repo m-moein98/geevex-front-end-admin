@@ -5,6 +5,7 @@ import { Vendor, VendorsResponse } from "../admin.model";
 import { NbDialogService } from "@nebular/theme";
 import { EditVendorMetadataDialogComponent } from "./edit-vendor-metadata/edit-vendor-metadata.component";
 import { BaseTableComponent } from "../base-table/base-table.component";
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: "ngx-vendors",
@@ -14,7 +15,8 @@ import { BaseTableComponent } from "../base-table/base-table.component";
 export class VendorsComponent extends BaseTableComponent {
   constructor(
     private service: AdminService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private toastrService: NbToastrService
   ) {
     super()
     this.source.onUpdated().pipe(
@@ -82,5 +84,24 @@ export class VendorsComponent extends BaseTableComponent {
         this.settings = this.settingsFactory()
       }
     );
+  }
+
+  applyAll() {
+    // Find all elements with nb-checkmark class
+    const checkmarkElements = document.querySelectorAll('i.nb-checkmark');
+    
+    if (checkmarkElements.length === 0) {
+      this.toastrService.info('No checkmark elements found to apply', 'Info');
+      return;
+    }
+
+    // Click on each checkmark element
+    checkmarkElements.forEach((element, index) => {
+      setTimeout(() => {
+        (element as HTMLElement).click();
+      }, index * 100); // Add small delay between clicks
+    });
+
+    this.toastrService.success(`Applied ${checkmarkElements.length} checkmarks`, 'Success');
   }
 }

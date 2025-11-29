@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin-service';
-import { Withdrawal, WithdrawalStatus, WithdrawalType, Coin } from '../admin.model';
+import { Withdrawal, WithdrawalStatus, WithdrawalType, Coin, MinifedUser } from '../admin.model';
 import { NbToastrService } from '@nebular/theme';
 import { BaseTableComponent } from '../base-table/base-table.component';
 
@@ -53,6 +53,14 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
           renderComponent: 'coin-renderer',
           width: '120px',
           editable: false,
+        },
+        user: {
+          title: 'Phone',
+          type: 'string',
+          width: '150px',
+          valuePrepareFunction: (value: MinifedUser) => {
+            return value.phone;
+          },
         },
         network: {
           title: 'Network',
@@ -193,13 +201,10 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
 
   onEdit(event: any): void {
     const withdrawal = event.data;
-    // Open edit dialog for withdrawal status update
     this.openEditDialog(withdrawal);
   }
 
   openEditDialog(withdrawal: Withdrawal): void {
-    // This would open a dialog for editing withdrawal status
-    // For now, we'll just show a simple prompt
     const newStatus = prompt('Enter new status (INCOMPLETE, APPROVED, CHECKING, COMPLETED, CANCELLED, REJECTED):', withdrawal.status);
     if (newStatus && this.withdrawalStatuses.includes(newStatus as WithdrawalStatus)) {
       this.updateWithdrawalStatus(withdrawal.id, newStatus as WithdrawalStatus);
@@ -234,5 +239,24 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
     } else {
       event.confirm.reject();
     }
+  }
+
+  applyAll() {
+    // Find all elements with nb-checkmark class
+    const checkmarkElements = document.querySelectorAll('i.nb-checkmark');
+    
+    if (checkmarkElements.length === 0) {
+      this.toastrService.info('No checkmark elements found to apply', 'Info');
+      return;
+    }
+
+    // Click on each checkmark element
+    checkmarkElements.forEach((element, index) => {
+      setTimeout(() => {
+        (element as HTMLElement).click();
+      }, index * 100); // Add small delay between clicks
+    });
+
+    this.toastrService.success(`Applied ${checkmarkElements.length} checkmarks`, 'Success');
   }
 }

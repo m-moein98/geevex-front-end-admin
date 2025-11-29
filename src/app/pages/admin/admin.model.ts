@@ -1,3 +1,8 @@
+export interface MinifedUser {
+  id: number;
+  email: string;
+  phone: string;
+}
 
 export interface Option {
   name: string | boolean;
@@ -290,6 +295,7 @@ export interface Deposit {
   source_card_number?: string | null;
   image_url?: string | null;
   link?: string | null;
+  user: MinifedUser;
 }
 
 export type DepositStatus = 'INCOMPLETE' | 'CHECKING' | 'COMPLETED' | 'CANCELLED' | 'REJECTED';
@@ -325,6 +331,7 @@ export interface Withdrawal {
   status: WithdrawalStatus;
   type: WithdrawalType;
   title: string;
+  user: MinifedUser;
 }
 
 export type WithdrawalStatus = 'INCOMPLETE' | 'APPROVED' | 'CHECKING' | 'COMPLETED' | 'CANCELLED' | 'REJECTED';

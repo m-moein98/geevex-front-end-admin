@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin-service';
-import { Deposit, DepositStatus, DepositType, Coin } from '../admin.model';
+import { Deposit, DepositStatus, DepositType, Coin, MinifedUser } from '../admin.model';
 import { NbToastrService } from '@nebular/theme';
 import { BaseTableComponent } from '../base-table/base-table.component';
 
@@ -46,6 +46,14 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
           editable: false,
           valuePrepareFunction: (date: string) => {
             return new Date(date).toLocaleDateString();
+          },
+        },
+        user: {
+          title: 'Phone',
+          type: 'string',
+          width: '150px',
+          valuePrepareFunction: (value: MinifedUser) => {
+            return value.phone;
           },
         },
         coin: {
@@ -214,5 +222,24 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
     this.coinId = null;
     this.network = '';
     this.loadData();
+  }
+
+  applyAll() {
+    // Find all elements with nb-checkmark class
+    const checkmarkElements = document.querySelectorAll('i.nb-checkmark');
+
+    if (checkmarkElements.length === 0) {
+      this.toastrService.info('No checkmark elements found to apply', 'Info');
+      return;
+    }
+
+    // Click on each checkmark element
+    checkmarkElements.forEach((element, index) => {
+      setTimeout(() => {
+        (element as HTMLElement).click();
+      }, index * 100); // Add small delay between clicks
+    });
+
+    this.toastrService.success(`Applied ${checkmarkElements.length} checkmarks`, 'Success');
   }
 }

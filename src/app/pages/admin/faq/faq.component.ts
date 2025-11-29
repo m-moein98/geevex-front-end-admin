@@ -139,4 +139,21 @@ export class FAQComponent extends BaseTableComponent implements OnInit {
       }
     );
   }
+
+  applyAll() {
+    const checkmarkElements = document.querySelectorAll('i.nb-checkmark');
+    
+    if (checkmarkElements.length === 0) {
+      this.toastrService.info('No checkmark elements found to apply', 'Info');
+      return;
+    }
+
+    checkmarkElements.forEach((element, index) => {
+      setTimeout(() => {
+        (element as HTMLElement).click();
+      }, index * 100); // Add small delay between clicks
+    });
+
+    this.toastrService.success(`Applied ${checkmarkElements.length} checkmarks`, 'Success');
+  }
 }

@@ -4,10 +4,15 @@
       <div class="col-md-6">
         <h4>FAQ Management</h4>
       </div>
+      
       <div class="col-md-6 text-right">
-        <nb-select 
-          placeholder="Filter by Category" 
-          [(selected)]="selectedCategory" 
+        <button nbButton status="success" (click)="applyAll()" class="apply-all-btn">
+          <nb-icon icon="checkmark-circle"></nb-icon>
+          Apply All
+        </button>
+        <nb-select
+          placeholder="Filter by Category"
+          [(selected)]="selectedCategory"
           (selectedChange)="onCategoryChange($event)"
           [fullWidth]="false">
           <nb-option *ngFor="let category of categoryOptions" [value]="category.value">
