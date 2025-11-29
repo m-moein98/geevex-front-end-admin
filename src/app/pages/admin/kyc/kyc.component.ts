@@ -7,6 +7,7 @@ import { NbDialogService } from "@nebular/theme";
 import { ImagePreviewComponent } from "../image-preview/image-preview.component";
 import { VideoPreviewComponent } from "../video-preview/video-preview.component";
 import { ToastService } from "../../toast-service";
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: "ngx-kyc",
@@ -17,16 +18,10 @@ export class KYCComponent extends BaseTableComponent {
   constructor(
     private service: AdminService,
     private dialogService: NbDialogService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private toastrService: NbToastrService
   ) {
     super()
-    this.source.onUpdated().pipe(
-      tap(() => this.isLoading = true),
-      concatMap(payload => {
-        this.toastService.showToast('success', 'success', `KYC Status changed to ${payload.status}`)
-        return this.service.updateKYCStatus(payload.id, payload.status)
-      }),
-    ).subscribe(this.updateObserver)
   }
   KYCs: KYC[]
 
@@ -168,6 +163,20 @@ export class KYCComponent extends BaseTableComponent {
         this.isLoading = false
         this.source.load(this.KYCs)
         this.settings = this.settingsFactory()
+      }
+    );
+  }
+
+  onEdit(event: any) {
+    const kyc = event.newData;
+    this.service.updateKYCStatus(kyc.id, kyc.status).subscribe(
+      (result) => {
+        this.toastrService.success('KYC status updated successfully', 'Success');
+        this.getKYCs();
+      },
+      (error) => {
+        this.toastrService.danger('Failed to update KYC status', 'Error');
+        this.isLoading = false;
       }
     );
   }
