@@ -1,0 +1,95 @@
+<nb-card [nbSpinner]="isLoading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Users Management</h4>
+      </div>
+      <div class="col-md-6 text-right">
+        <button nbButton status="success" (click)="resetFilters()">
+          <nb-icon icon="refresh-outline"></nb-icon>
+          Reset Filters
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  
+  <nb-card-body>
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <nb-form-field>
+          <input nbInput 
+                 fullWidth 
+                 placeholder="Search by Phone" 
+                 [(ngModel)]="filters.phone" 
+                 (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+      <div class="col-md-3">
+        <nb-form-field>
+          <input nbInput 
+                 fullWidth 
+                 placeholder="Search by Email" 
+                 [(ngModel)]="filters.email" 
+                 (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input nbInput 
+                 fullWidth 
+                 placeholder="First Name" 
+                 [(ngModel)]="filters.first_name" 
+                 (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input nbInput 
+                 fullWidth 
+                 placeholder="Last Name" 
+                 [(ngModel)]="filters.last_name" 
+                 (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input nbInput 
+                 fullWidth 
+                 placeholder="Father Name" 
+                 [(ngModel)]="filters.father_name" 
+                 (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+    </div>
+
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (userRowSelect)="onUserSelect($event)"
+      (edit)="onEdit($event)">
+    </ng2-smart-table>
+
+    <div class="row mt-3" *ngIf="pagination">
+      <div class="col-md-6">
+        <span>Showing {{ pagination.count }} users</span>
+      </div>
+      <div class="col-md-6 text-right">
+        <button nbButton 
+                status="primary" 
+                [disabled]="!pagination.previous" 
+                (click)="previousPage()">
+          <nb-icon icon="arrow-left"></nb-icon>
+          Previous
+        </button>
+        <span class="mx-2">Page {{ filters.page }}</span>
+        <button nbButton 
+                status="primary" 
+                [disabled]="!pagination.next" 
+                (click)="nextPage()">
+          Next
+          <nb-icon icon="arrow-right"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

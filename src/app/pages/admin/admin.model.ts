@@ -4,6 +4,107 @@ export interface MinifedUser {
   phone: string;
 }
 
+// User interfaces
+export interface User {
+  id: number;
+  created_at: string;
+  first_name: string | null;
+  last_name: string | null;
+  father_name: string | null;
+  birth_place: string | null;
+  national_code: string | null;
+  date_of_birth: string | null;
+  email: string | null;
+  phone: string | null;
+  referral_code: string | null;
+  custom_referral_code: string | null;
+  balance: number;
+  total_referral_count: number;
+  withdrawal_security_methods: string[];
+  totp_enabled: boolean | null;
+  kyc_status: KYCStatusResponse | null;
+  kyc_level: number | null;
+  avatar_url: string | null;
+  devices: DeviceInfo[];
+  email_notifications: boolean | null;
+  require_order_confirmation: boolean | null;
+  require_cancel_confirmation: boolean | null;
+}
+
+export interface KYCStatusResponse {
+  status: string;
+  level: number | null;
+  rejection_reason: string | null;
+  uploaded_files: UploadedFiles | null;
+  data: KYCTextData | null;
+}
+
+export interface KYCTextData {
+  first_name: string | null;
+  last_name: string | null;
+  father_name: string | null;
+  national_code: string | null;
+  date_of_birth: string | null;
+  bank_account_number: string | null;
+  birth_place: string | null;
+  residence_province: string | null;
+}
+
+export interface UploadedFiles {
+  front_id: string | null;
+  back_id: string | null;
+  selfie: string | null;
+}
+
+export interface DeviceInfo {
+  serial: string | null;
+  brand: string | null;
+  model: string | null;
+  ip: string | null;
+  last_login: string | null;
+  access_token: string | null;
+}
+
+export interface UsersResponse {
+  count: number;
+  next: number | null;
+  previous: number | null;
+  results: User[];
+}
+
+export interface UserListFilter {
+  phone?: string | null;
+  email?: string | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  father_name?: string | null;
+}
+
+export type UserListOrderBy = 'id' | 'phone' | 'email' | 'first_name' | 'last_name';
+
+// Wallet interfaces
+export interface Wallet {
+  id: number;
+  coin: BaseCoin;
+  total_usdt_amount: number;
+  total_irr_amount: number;
+  usdt_amount: number;
+  irr_amount: number;
+  amount: number;
+  frozen_bot_amount: number;
+  frozen_bot_usdt_amount: number;
+  frozen_bot_irr_amount: number;
+  frozen_investment_amount: number;
+  frozen_investment_usdt_amount: number;
+  frozen_investment_irr_amount: number;
+  frozen_order_irr_amount: number;
+  frozen_order_usdt_amount: number;
+}
+
+export interface WalletsResponse {
+  results: Wallet[];
+}
+
 export interface Option {
   name: string | boolean;
   placeholder: string;
@@ -562,4 +663,83 @@ export interface UpdateCoinWithdrawalNetwork {
   coin_id?: number | null;
   network?: string | null;
   is_active?: boolean | null;
+}
+
+// Invoice interfaces
+export interface Invoice {
+  id: number;
+  created_at: string;
+  user_id: number;
+  is_finalized: boolean;
+  price: number;
+  transactions: Transaction[];
+}
+
+export interface InvoiceFilter {
+  user_id?: number | null;
+  is_finalized?: boolean | null;
+}
+
+export type InvoiceOrderBy = 'id' | 'created_at' | 'user_id' | 'is_finalized';
+
+export interface InvoicePaginatedResponse {
+  count: number;
+  next: number | null;
+  previous: number | null;
+  results: Invoice[];
+}
+
+// Transaction interfaces
+export interface Transaction {
+  created_at: string;
+  user_id: number;
+  doc_id: number;
+  title: string;
+  debt: number;
+  claim: number;
+  balance: number;
+}
+
+export interface TransactionFilter {
+  id?: number | null;
+  created_at?: string | null;
+  user_id?: number | null;
+  group_id?: number | null;
+}
+
+export type TransactionsOrderBy = 'id' | 'created_at';
+
+export interface TransactionPaginatedResponse {
+  count: number;
+  next: number | null;
+  previous: number | null;
+  results: Transaction[];
+}
+
+// Transaction Group interfaces
+export interface TransactionGroup {
+  id: number;
+  created_at: string;
+  user_id: number;
+  doc_id: number;
+  title: string;
+  debt: number;
+  claim: number;
+  balance: number;
+  is_editable: boolean;
+}
+
+export interface TransactionGroupFilter {
+  user_id?: number | null;
+  doc_id?: number | null;
+  title?: string | null;
+}
+
+export type TransactionGroupOrderBy = 'id' | 'created_at';
+
+export interface TransactionGroupPaginatedResponse {
+  count: number;
+  next: number | null;
+  previous: number | null;
+  results: TransactionGroup[];
 }

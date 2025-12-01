@@ -1,0 +1,89 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Invoices Management</h4>
+      </div>
+      <div class="col-md-6 text-right">
+        <button nbButton status="primary" (click)="resetFilters()">
+          <nb-icon icon="refresh-outline"></nb-icon>
+          Reset Filters
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <!-- Filters -->
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <nb-form-field>
+          <input nbInput fullWidth placeholder="User ID" [(ngModel)]="filters.user_id" (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input nbInput fullWidth placeholder="Phone Number" [(ngModel)]="filters.phone" (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <nb-select fullWidth placeholder="Finalized" [(selected)]="filters.is_finalized" (selectedChange)="onFilterChange()">
+            <nb-option value="">All</nb-option>
+            <nb-option value="true">Yes</nb-option>
+            <nb-option value="false">No</nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <nb-select fullWidth placeholder="Order By" [(selected)]="filters.order_by" (selectedChange)="onFilterChange()">
+            <nb-option value="id">ID</nb-option>
+            <nb-option value="created_at">Created At</nb-option>
+            <nb-option value="user_id">User ID</nb-option>
+            <nb-option value="is_finalized">Finalized</nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <nb-select fullWidth placeholder="Order Direction" [(selected)]="filters.order_direction" (selectedChange)="onFilterChange()">
+            <nb-option value="asc">Ascending</nb-option>
+            <nb-option value="desc">Descending</nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+      <div class="col-md-2">
+        <nb-form-field>
+          <input nbInput fullWidth type="number" placeholder="Page Size" [(ngModel)]="filters.page_size" (ngModelChange)="onFilterChange()">
+        </nb-form-field>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (userRowSelect)="onInvoiceSelect($event)">
+    </ng2-smart-table>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="text-center py-4">
+      <nb-spinner status="primary"></nb-spinner>
+    </div>
+
+    <!-- Pagination -->
+    <div class="row mt-3" *ngIf="pagination">
+      <div class="col-md-12 text-center">
+        <button nbButton status="basic" [disabled]="!pagination.previous" (click)="previousPage()">
+          <nb-icon icon="arrow-left"></nb-icon>
+          Previous
+        </button>
+        <span class="mx-3">Page {{ filters.page }}</span>
+        <button nbButton status="basic" [disabled]="!pagination.next" (click)="nextPage()">
+          Next
+          <nb-icon icon="arrow-right"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

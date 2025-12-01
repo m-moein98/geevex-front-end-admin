@@ -1,0 +1,65 @@
+<nb-card class="dialog-card">
+  <nb-card-header>
+    <h6>Wallet Items - {{ userPhone }}</h6>
+    <nb-icon class="close-icon" icon="close-outline" (click)="close()"></nb-icon>
+  </nb-card-header>
+  
+  <nb-card-body>
+    <div class="spinner-container" *ngIf="isLoading">
+      <nb-spinner status="primary" size="large"></nb-spinner>
+    </div>
+    
+    <div class="wallet-content" *ngIf="!isLoading">
+      <div class="summary-cards">
+        <nb-card class="summary-card" status="info">
+          <nb-card-body>
+            <div class="summary-item">
+              <span class="label">Total IRR:</span>
+              <span class="value">{{ getTotalIRR() | number:'1.0-2' }}</span>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        
+        <nb-card class="summary-card" status="success">
+          <nb-card-body>
+            <div class="summary-item">
+              <span class="label">Total USDT:</span>
+              <span class="value">{{ getTotalUSDT() | number:'1.2-2' }}</span>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+      <div class="wallet-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Coin</th>
+              <th>Symbol</th>
+              <th>Available</th>
+              <th>Frozen (Bot)</th>
+              <th>Frozen (Investment)</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let wallet of wallets">
+              <td>
+                <img [src]="wallet.coin.logo_url" 
+                     [alt]="wallet.coin.name" 
+                     class="coin-logo"
+                     *ngIf="wallet.coin.logo_url">
+                <span *ngIf="!wallet.coin.logo_url">{{ wallet.coin.name }}</span>
+              </td>
+              <td>{{ wallet.coin.symbol }}</td>
+              <td>{{ wallet.amount | number:'1.8' }}</td>
+              <td>{{ wallet.frozen_bot_amount | number:'1.8' }}</td>
+              <td>{{ wallet.frozen_investment_amount | number:'1.8' }}</td>
+              <td class="total-amount">{{ wallet.total_irr_amount | number:'1.2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

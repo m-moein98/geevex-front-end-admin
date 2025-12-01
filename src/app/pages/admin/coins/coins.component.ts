@@ -34,7 +34,7 @@ export class CoinsComponent extends BaseTableComponent {
     ...this.defaultSettings,
     actions: {
       add: true,
-      edit: false,
+      edit: true,
       delete: false,
     },
     columns: {
@@ -51,6 +51,7 @@ export class CoinsComponent extends BaseTableComponent {
       symbol: {
         title: 'Symbol',
         width: '10%',
+        editable: false,
       },
       fa_name: {
         title: 'Fa Name',
@@ -59,10 +60,12 @@ export class CoinsComponent extends BaseTableComponent {
       irr_price: {
         title: 'IRR Price',
         width: '15%',
+        editable: false,
       },
       usdt_price: {
         title: 'USDT Price',
         width: '15%',
+        editable: false,
       },
       is_sellable: {
         title: 'Is Sellable',

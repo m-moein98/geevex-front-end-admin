@@ -1,0 +1,68 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-10">
+        <h4>Transaction Group - ID: {{ transactionGroup?.id }}</h4>
+      </div>
+      <div class="col-md-2 text-right">
+        <button nbButton status="danger" (click)="close()">
+          <nb-icon icon="close-outline"></nb-icon>
+          Close
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <!-- Transaction Group Info -->
+    <div class="row mb-3" *ngIf="transactionGroup">
+      <div class="col-md-12">
+        <nb-card>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-md-3">
+                <strong>Group ID:</strong> {{ transactionGroup.id }}
+              </div>
+              <div class="col-md-3">
+                <strong>Created:</strong> {{ transactionGroup.created_at | date:'medium' }}
+              </div>
+              <div class="col-md-3">
+                <strong>User ID:</strong> {{ transactionGroup.user_id }}
+              </div>
+              <div class="col-md-3">
+                <strong>Editable:</strong> {{ transactionGroup.is_editable ? 'Yes' : 'No' }}
+              </div>
+              <div class="col-md-12 mt-2">
+                <strong>Title:</strong> {{ transactionGroup.title }}
+              </div>
+              <div class="col-md-4 mt-2">
+                <strong>Debt:</strong> {{ transactionGroup.debt | currency }}
+              </div>
+              <div class="col-md-4 mt-2">
+                <strong>Claim:</strong> {{ transactionGroup.claim | currency }}
+              </div>
+              <div class="col-md-4 mt-2">
+                <strong>Balance:</strong> {{ transactionGroup.balance | currency }}
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="row">
+      <div class="col-md-12">
+        <h5>Transactions</h5>
+        <ng2-smart-table
+          [settings]="settings"
+          [source]="source">
+        </ng2-smart-table>
+
+        <!-- Loading Spinner -->
+        <div *ngIf="isLoading" class="text-center py-4">
+          <nb-spinner status="primary"></nb-spinner>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

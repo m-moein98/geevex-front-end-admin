@@ -1,0 +1,144 @@
+<nb-card class="dialog-card">
+  <nb-card-header>
+    <h6>User Orders - {{ userPhone }}</h6>
+    <nb-icon class="close-icon" icon="close-outline" (click)="close()"></nb-icon>
+  </nb-card-header>
+  
+  <nb-card-body>
+    <div class="spinner-container" *ngIf="isLoading">
+      <nb-spinner status="primary" size="large"></nb-spinner>
+    </div>
+    
+    <div class="orders-content" *ngIf="!isLoading">
+      <!-- Filters -->
+      <div class="filters-section">
+        <div class="row">
+          <div class="col-md-3">
+            <nb-form-field>
+              <select nbSelect fullWidth 
+                      placeholder="Order Status" 
+                      [(ngModel)]="filters.status" 
+                      (ngModelChange)="loadOrders()">
+                <option value="">All Status</option>
+                <option value="CREATED">Created</option>
+                <option value="CANCELLED">Cancelled</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="FAILED">Failed</option>
+                <option value="COMPLETED">Completed</option>
+              </select>
+            </nb-form-field>
+          </div>
+          <div class="col-md-3">
+            <nb-form-field>
+              <select nbSelect fullWidth 
+                      placeholder="Order Action" 
+                      [(ngModel)]="filters.action" 
+                      (ngModelChange)="loadOrders()">
+                <option value="">All Actions</option>
+                <option value="buy">Buy</option>
+                <option value="sell">Sell</option>
+                <option value="swap">Swap</option>
+              </select>
+            </nb-form-field>
+          </div>
+          <div class="col-md-3">
+            <nb-form-field>
+              <input nbInput 
+                     fullWidth 
+                     type="number" 
+                     placeholder="Page Size" 
+                     [(ngModel)]="filters.page_size" 
+                     (ngModelChange)="loadOrders()">
+            </nb-form-field>
+          </div>
+          <div class="col-md-3">
+            <nb-form-field>
+              <input nbInput 
+                     fullWidth 
+                     type="number" 
+                     placeholder="Page" 
+                     [(ngModel)]="filters.page" 
+                     (ngModelChange)="loadOrders()">
+            </nb-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders Table -->
+      <div class="orders-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Action</th>
+              <th>Source Coin</th>
+              <th>Destination Coin</th>
+              <th>Source Amount</th>
+              <th>Destination Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{ order.id }}</td>
+              <td>{{ order.created_at | date:'short' }}</td>
+              <td>
+                <nb-badge [status]="getOrderActionStatus(order.action)" 
+                          [text]="order.action">
+                </nb-badge>
+              </td>
+              <td>
+                <img [src]="order.source_coin?.logo_url" 
+                     [alt]="order.source_coin?.name" 
+                     class="coin-logo"
+                     *ngIf="order.source_coin?.logo_url">
+                <span *ngIf="!order.source_coin?.logo_url">{{ order.source_coin?.symbol }}</span>
+              </td>
+              <td>
+                <img [src]="order.destination_coin?.logo_url" 
+                     [alt]="order.destination_coin?.name" 
+                     class="coin-logo"
+                     *ngIf="order.destination_coin?.logo_url">
+                <span *ngIf="!order.destination_coin?.logo_url">{{ order.destination_coin?.symbol }}</span>
+              </td>
+              <td>{{ order.source_amount | number:'1.8' }}</td>
+              <td>{{ order.destination_amount | number:'1.8' }}</td>
+              <td>
+                <nb-badge [status]="getOrderStatusBadge(order.status)" 
+                          [text]="order.status">
+                </nb-badge>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-section" *ngIf="pagination">
+        <div class="row">
+          <div class="col-md-6">
+            <span>Total: {{ pagination.count }} orders</span>
+          </div>
+          <div class="col-md-6 text-right">
+            <button nbButton 
+                    status="primary" 
+                    [disabled]="!pagination.previous" 
+                    (click)="previousPage()">
+              <nb-icon icon="arrow-left"></nb-icon>
+              Previous
+            </button>
+            <span class="mx-2">Page {{ filters.page }}</span>
+            <button nbButton 
+                    status="primary" 
+                    [disabled]="!pagination.next" 
+                    (click)="nextPage()">
+              Next
+              <nb-icon icon="arrow-right"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

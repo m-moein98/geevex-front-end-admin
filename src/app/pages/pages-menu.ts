@@ -81,11 +81,26 @@ function setMenuItems() {
         link: '/pages/admin/bots',
         icon: 'settings-2-outline',
       },
-      // {
-      //   title: 'users',
-      //   link: '/pages/admin/users',
-      //   icon: 'people-outline',
-      // },
+      {
+        title: 'users',
+        link: '/pages/admin/users',
+        icon: 'people-outline',
+      },
+      {
+        title: 'invoices',
+        link: '/pages/admin/invoices',
+        icon: 'file-text-outline',
+      },
+      {
+        title: 'transactions',
+        link: '/pages/admin/transactions',
+        icon: 'swap-outline',
+      },
+      {
+        title: 'transaction groups',
+        link: '/pages/admin/transaction-groups',
+        icon: 'folder-outline',
+      },
       // {
       //   title: 'wallet',
       //   link: '/pages/admin/wallet',

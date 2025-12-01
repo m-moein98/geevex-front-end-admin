@@ -57,6 +57,16 @@ import { DepositsComponent } from "./deposits/deposits.component";
 import { WithdrawalsComponent } from "./withdrawals/withdrawals.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { BotsComponent } from "./bots/bots.component";
+import { UsersComponent } from "./users/users.component";
+import { WalletDialogComponent } from "./users/wallet-dialog/wallet-dialog.component";
+import { UserOrdersDialogComponent } from "./users/user-orders-dialog/user-orders-dialog.component";
+import { UserWithdrawalsDialogComponent } from "./users/user-withdrawals-dialog/user-withdrawals-dialog.component";
+import { UserDepositsDialogComponent } from "./users/user-deposits-dialog/user-deposits-dialog.component";
+import { InvoicesComponent } from "./invoices/invoices.component";
+import { InvoiceTransactionsDialogComponent } from "./invoices/invoice-transactions-dialog/invoice-transactions-dialog.component";
+import { TransactionsComponent } from "./transactions/transactions.component";
+import { TransactionGroupsComponent } from "./transaction-groups/transaction-groups.component";
+import { TransactionGroupTransactionsDialogComponent } from "./transaction-groups/transaction-group-transactions-dialog/transaction-group-transactions-dialog.component";
 
 @NgModule({
   imports: [
@@ -115,6 +125,17 @@ import { BotsComponent } from "./bots/bots.component";
     WithdrawalsComponent,
     OrdersComponent,
     BotsComponent,
+    UsersComponent,
+    WalletDialogComponent,
+    UserOrdersDialogComponent,
+    UserWithdrawalsDialogComponent,
+    UserDepositsDialogComponent,
+    InvoicesComponent,
+    InvoiceTransactionsDialogComponent,
+    TransactionsComponent,
+    TransactionGroupsComponent,
+    TransactionGroupTransactionsDialogComponent,
   ],
 })
 export class AdminModule { }
+

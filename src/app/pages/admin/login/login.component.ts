@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       this.form.value.password
     ).subscribe((res: any) => {
       localStorage.setItem('token', res.token)
-      this.service.getUser().subscribe(user => {
+      this.service.getCurrentUser().subscribe(user => {
         if (user) {
           this.isLoggedIn = true;
           localStorage.setItem('user', JSON.stringify(user))

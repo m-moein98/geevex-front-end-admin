@@ -1,0 +1,148 @@
+<nb-card class="dialog-card">
+  <nb-card-header>
+    <h6>User Deposits - {{ userPhone }}</h6>
+    <nb-icon class="close-icon" icon="close-outline" (click)="close()"></nb-icon>
+  </nb-card-header>
+  
+  <nb-card-body>
+    <div class="spinner-container" *ngIf="isLoading">
+      <nb-spinner status="primary" size="large"></nb-spinner>
+    </div>
+    
+    <div class="deposits-content" *ngIf="!isLoading">
+      <!-- Filters -->
+      <div class="filters-section">
+        <div class="row">
+          <div class="col-md-3">
+            <nb-form-field>
+              <select nbSelect fullWidth 
+                      placeholder="Deposit Status" 
+                      [(ngModel)]="filters.status" 
+                      (ngModelChange)="loadDeposits()">
+                <option value="">All Status</option>
+                <option value="INCOMPLETE">Incomplete</option>
+                <option value="CHECKING">Checking</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="CANCELLED">Cancelled</option>
+                <option value="REJECTED">Rejected</option>
+              </select>
+            </nb-form-field>
+          </div>
+          <div class="col-md-3">
+            <nb-form-field>
+              <select nbSelect fullWidth 
+                      placeholder="Deposit Type" 
+                      [(ngModel)]="filters.type" 
+                      (ngModelChange)="loadDeposits()">
+                <option value="">All Types</option>
+                <option value="CRYPTO">Crypto</option>
+                <option value="CARD_PAYMENT">Card Payment</option>
+                <option value="IBAN_PAYMENT">IBAN Payment</option>
+                <option value="SHETAB_PAYMENT">Shetab Payment</option>
+              </select>
+            </nb-form-field>
+          </div>
+          <div class="col-md-3">
+            <nb-form-field>
+              <input nbInput 
+                     fullWidth 
+                     type="number" 
+                     placeholder="Page Size" 
+                     [(ngModel)]="filters.page_size" 
+                     (ngModelChange)="loadDeposits()">
+            </nb-form-field>
+          </div>
+          <div class="col-md-3">
+            <nb-form-field>
+              <input nbInput 
+                     fullWidth 
+                     type="number" 
+                     placeholder="Page" 
+                     [(ngModel)]="filters.page" 
+                     (ngModelChange)="loadDeposits()">
+            </nb-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deposits Table -->
+      <div class="deposits-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Coin</th>
+              <th>Network</th>
+              <th>Address</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deposit of deposits">
+              <td>{{ deposit.id }}</td>
+              <td>{{ deposit.created_at | date:'short' }}</td>
+              <td>
+                <img [src]="deposit.coin?.logo_url" 
+                     [alt]="deposit.coin?.name" 
+                     class="coin-logo"
+                     *ngIf="deposit.coin?.logo_url">
+                <span *ngIf="!deposit.coin?.logo_url">{{ deposit.coin?.symbol }}</span>
+              </td>
+              <td>{{ deposit.network }}</td>
+              <td class="address-cell">
+                <span class="address-text">{{ deposit.address }}</span>
+                <button nbButton 
+                        size="tiny" 
+                        status="basic" 
+                        (click)="copyToClipboard(deposit.address)"
+                        class="copy-btn">
+                  <nb-icon icon="copy-outline"></nb-icon>
+                </button>
+              </td>
+              <td>{{ deposit.amount | number:'1.8' }}</td>
+              <td>
+                <nb-badge [status]="getDepositTypeBadge(deposit.type)" 
+                          [text]="deposit.type">
+                </nb-badge>
+              </td>
+              <td>
+                <nb-badge [status]="getDepositStatusBadge(deposit.status)" 
+                          [text]="deposit.status">
+                </nb-badge>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-section" *ngIf="pagination">
+        <div class="row">
+          <div class="col-md-6">
+            <span>Total: {{ pagination.count }} deposits</span>
+          </div>
+          <div class="col-md-6 text-right">
+            <button nbButton 
+                    status="primary" 
+                    [disabled]="!pagination.previous" 
+                    (click)="previousPage()">
+              <nb-icon icon="arrow-left"></nb-icon>
+              Previous
+            </button>
+            <span class="mx-2">Page {{ filters.page }}</span>
+            <button nbButton 
+                    status="primary" 
+                    [disabled]="!pagination.next" 
+                    (click)="nextPage()">
+              Next
+              <nb-icon icon="arrow-right"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

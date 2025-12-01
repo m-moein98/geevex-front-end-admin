@@ -15,6 +15,10 @@ import { DepositsComponent } from './deposits/deposits.component';
 import { WithdrawalsComponent } from './withdrawals/withdrawals.component';
 import { OrdersComponent } from './orders/orders.component';
 import { BotsComponent } from './bots/bots.component';
+import { UsersComponent } from './users/users.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionGroupsComponent } from './transaction-groups/transaction-groups.component';
 
 const routes: Routes = [
   {
@@ -76,6 +80,22 @@ const routes: Routes = [
       {
         path: 'bots',
         component: BotsComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+      },
+      {
+        path: 'invoices',
+        component: InvoicesComponent
+      },
+      {
+        path: 'transactions',
+        component: TransactionsComponent
+      },
+      {
+        path: 'transaction-groups',
+        component: TransactionGroupsComponent
       },
       {
         path: '',

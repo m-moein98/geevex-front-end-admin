@@ -21,7 +21,11 @@ import { BasicResponse, Coin, CoinsResponse, CreateCoin, CreateOrderRequest, KYC
   CustomTradeBot, CreateCustomTradeBot,
   Investment, CreateInvestment, UpdateInvestment, InvestmentsResponse,
   CoinDepositNetwork, CoinDepositNetworksResponse, CreateCoinDepositNetwork, UpdateCoinDepositNetwork,
-  CoinWithdrawalNetwork, CoinWithdrawalNetworksResponse, CreateCoinWithdrawalNetwork, UpdateCoinWithdrawalNetwork } from "./admin.model";
+  CoinWithdrawalNetwork, CoinWithdrawalNetworksResponse, CreateCoinWithdrawalNetwork, UpdateCoinWithdrawalNetwork,
+  User, UsersResponse, UserListFilter, UserListOrderBy, Wallet, WalletsResponse,
+  Invoice, InvoiceFilter, InvoiceOrderBy, InvoicePaginatedResponse,
+  Transaction, TransactionFilter, TransactionsOrderBy, TransactionPaginatedResponse,
+  TransactionGroup, TransactionGroupFilter, TransactionGroupOrderBy, TransactionGroupPaginatedResponse } from "./admin.model";
 
 import { catchError, tap } from "rxjs/operators";
 import { apiEndpoints } from "../constants/apiendpoints";
@@ -73,7 +77,7 @@ export class AdminService {
     this.index += 1;
     this.toastrService.show(body, `message ${this.index}${titleContent}`, config);
   }
-  getUser(): Observable<any> {
+  getCurrentUser(): Observable<any> {
     return this.http.get<any>(apiEndpoints.user).pipe(
       catchError((err) => {
         localStorage.clear()
@@ -425,5 +429,104 @@ export class AdminService {
 
   deleteCoinWithdrawalNetwork(withdrawalNetworkId: number): Observable<BasicResponse> {
     return this.http.delete<BasicResponse>(`${apiEndpoints.coinWithdrawalNetworks}${withdrawalNetworkId}/`);
+  }
+
+  // Users API methods
+  getUsers(params?: any): Observable<UsersResponse> {
+    let url = apiEndpoints.users;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          if (Array.isArray(params[key])) {
+            params[key].forEach((value: any) => queryParams.append(key, value));
+          } else {
+            queryParams.append(key, params[key]);
+          }
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<UsersResponse>(url);
+  }
+
+  getUser(userId: number): Observable<User> {
+    return this.http.get<User>(`${apiEndpoints.user}${userId}/`);
+  }
+
+  // Wallet API methods
+  getWallets(params?: any): Observable<WalletsResponse> {
+    let url = apiEndpoints.wallet;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          queryParams.append(key, params[key]);
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<WalletsResponse>(url);
+  }
+
+  getWallet(coinSymbol: string): Observable<Wallet> {
+    return this.http.get<Wallet>(`${apiEndpoints.wallet}${coinSymbol}/`);
+  }
+
+  // Invoices API methods
+  getInvoices(params?: any): Observable<InvoicePaginatedResponse> {
+    let url = apiEndpoints.invoices;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          if (Array.isArray(params[key])) {
+            params[key].forEach((value: any) => queryParams.append(key, value));
+          } else {
+            queryParams.append(key, params[key]);
+          }
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<InvoicePaginatedResponse>(url);
+  }
+
+  // Transactions API methods
+  getTransactions(params?: any): Observable<TransactionPaginatedResponse> {
+    let url = apiEndpoints.transactions;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          if (Array.isArray(params[key])) {
+            params[key].forEach((value: any) => queryParams.append(key, value));
+          } else {
+            queryParams.append(key, params[key]);
+          }
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<TransactionPaginatedResponse>(url);
+  }
+
+  // Transaction Groups API methods
+  getTransactionGroups(params?: any): Observable<TransactionGroupPaginatedResponse> {
+    let url = apiEndpoints.transactionGroups;
+    if (params) {
+      const queryParams = new URLSearchParams();
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          if (Array.isArray(params[key])) {
+            params[key].forEach((value: any) => queryParams.append(key, value));
+          } else {
+            queryParams.append(key, params[key]);
+          }
+        }
+      });
+      url += '?' + queryParams.toString();
+    }
+    return this.http.get<TransactionGroupPaginatedResponse>(url);
   }
 }
