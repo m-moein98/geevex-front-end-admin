@@ -75,6 +75,10 @@ export class CoinsComponent extends BaseTableComponent {
         title: 'Is Buyable',
         ...this.boolColumnParams,
       },
+      is_geevparty: {
+        title: 'Is Geevparty',
+        ...this.boolColumnParams,
+      },
       amount_precision: {
         title: 'Amount Precision',
         width: '15%',
