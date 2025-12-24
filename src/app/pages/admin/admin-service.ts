@@ -492,11 +492,11 @@ export class AdminService {
     return this.http.get<InvoicePaginatedResponse>(url);
   }
 
-  // Transactions API methods
   getTransactions(params?: any): Observable<TransactionPaginatedResponse> {
     let url = apiEndpoints.transactions;
+    const queryParams = new URLSearchParams();
+    queryParams.append('admin_view', 'true');
     if (params) {
-      const queryParams = new URLSearchParams();
       Object.keys(params).forEach(key => {
         if (params[key] !== undefined && params[key] !== null) {
           if (Array.isArray(params[key])) {
@@ -511,11 +511,11 @@ export class AdminService {
     return this.http.get<TransactionPaginatedResponse>(url);
   }
 
-  // Transaction Groups API methods
   getTransactionGroups(params?: any): Observable<TransactionGroupPaginatedResponse> {
     let url = apiEndpoints.transactionGroups;
+    const queryParams = new URLSearchParams();
+    queryParams.append('admin_view', 'true');
     if (params) {
-      const queryParams = new URLSearchParams();
       Object.keys(params).forEach(key => {
         if (params[key] !== undefined && params[key] !== null) {
           if (Array.isArray(params[key])) {

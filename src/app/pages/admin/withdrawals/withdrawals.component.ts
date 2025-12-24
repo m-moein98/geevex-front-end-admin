@@ -49,15 +49,19 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
         },
         coin: {
           title: 'Coin',
-          type: 'custom',
-          renderComponent: 'coin-renderer',
+          type: 'number',
           width: '120px',
           editable: false,
+          valuePrepareFunction: (value: Coin) => {
+            console.log(value)
+            return value.symbol;
+          },
         },
         user: {
           title: 'Phone',
           type: 'string',
           width: '150px',
+          editable: false,
           valuePrepareFunction: (value: MinifedUser) => {
             return value.phone;
           },
@@ -200,15 +204,7 @@ export class WithdrawalsComponent extends BaseTableComponent implements OnInit {
   }
 
   onEdit(event: any): void {
-    const withdrawal = event.data;
-    this.openEditDialog(withdrawal);
-  }
-
-  openEditDialog(withdrawal: Withdrawal): void {
-    const newStatus = prompt('Enter new status (INCOMPLETE, APPROVED, CHECKING, COMPLETED, CANCELLED, REJECTED):', withdrawal.status);
-    if (newStatus && this.withdrawalStatuses.includes(newStatus as WithdrawalStatus)) {
-      this.updateWithdrawalStatus(withdrawal.id, newStatus as WithdrawalStatus);
-    }
+    this.updateWithdrawalStatus(event.newData.id, event.newData.status);
   }
 
   updateWithdrawalStatus(withdrawalId: number, status: WithdrawalStatus): void {

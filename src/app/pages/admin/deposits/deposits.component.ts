@@ -52,16 +52,20 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
           title: 'Phone',
           type: 'string',
           width: '150px',
+          editable: false,
           valuePrepareFunction: (value: MinifedUser) => {
             return value.phone;
           },
         },
         coin: {
           title: 'Coin',
-          type: 'custom',
-          renderComponent: 'coin-renderer',
+          type: 'number',
           width: '120px',
           editable: false,
+          valuePrepareFunction: (value: Coin) => {
+            console.log(value)
+            return value.symbol;
+          },
         },
         network: {
           title: 'Network',
@@ -188,18 +192,7 @@ export class DepositsComponent extends BaseTableComponent implements OnInit {
   }
 
   onEdit(event: any): void {
-    const deposit = event.data;
-    // Open edit dialog for deposit status update
-    this.openEditDialog(deposit);
-  }
-
-  openEditDialog(deposit: Deposit): void {
-    // This would open a dialog for editing deposit status
-    // For now, we'll just show a simple prompt
-    const newStatus = prompt('Enter new status (INCOMPLETE, CHECKING, COMPLETED, CANCELLED, REJECTED):', deposit.status);
-    if (newStatus && this.depositStatuses.includes(newStatus as DepositStatus)) {
-      this.updateDepositStatus(deposit.id, newStatus as DepositStatus);
-    }
+    this.updateDepositStatus(event.newData.id, event.newData.status);
   }
 
   updateDepositStatus(depositId: number, status: DepositStatus): void {
