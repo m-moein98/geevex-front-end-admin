@@ -12,6 +12,7 @@ export const apiEndpoints = {
     wallet: `${baseurl}/accounts/wallet/`,
     vendors: `${baseurl}/vendors/`,
     getCoins: `${baseurl}/coins/`,
+    dataExport: `${baseurl}/administration/data_export/`,
     coins: `${baseurl}/administration/coins/`,
     kyc: `${baseurl}/administration/kyc/`,
     orders: `${baseurl}/orders/`,

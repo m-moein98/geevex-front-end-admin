@@ -19,6 +19,7 @@ import { UsersComponent } from './users/users.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionGroupsComponent } from './transaction-groups/transaction-groups.component';
+import { DataExportComponent } from './data-export/data-export.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,10 @@ const routes: Routes = [
       {
         path: 'transaction-groups',
         component: TransactionGroupsComponent
+      },
+      {
+        path: 'data-export',
+        component: DataExportComponent
       },
       {
         path: '',

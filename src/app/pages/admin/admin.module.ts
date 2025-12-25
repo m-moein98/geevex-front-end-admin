@@ -67,6 +67,7 @@ import { InvoiceTransactionsDialogComponent } from "./invoices/invoice-transacti
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { TransactionGroupsComponent } from "./transaction-groups/transaction-groups.component";
 import { TransactionGroupTransactionsDialogComponent } from "./transaction-groups/transaction-group-transactions-dialog/transaction-group-transactions-dialog.component";
+import { DataExportComponent } from "./data-export/data-export.component";
 
 @NgModule({
   imports: [
@@ -135,6 +136,7 @@ import { TransactionGroupTransactionsDialogComponent } from "./transaction-group
     TransactionsComponent,
     TransactionGroupsComponent,
     TransactionGroupTransactionsDialogComponent,
+    DataExportComponent,
   ],
 })
 export class AdminModule { }

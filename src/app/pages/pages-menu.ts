@@ -101,6 +101,11 @@ function setMenuItems() {
         link: '/pages/admin/transaction-groups',
         icon: 'folder-outline',
       },
+      {
+        title: 'export data',
+        link: '/pages/admin/data-export',
+        icon: 'download-outline',
+      }
       // {
       //   title: 'wallet',
       //   link: '/pages/admin/wallet',
